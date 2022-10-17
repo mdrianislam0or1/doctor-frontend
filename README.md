@@ -1,13 +1,9 @@
-# Front_End
+git checkout dev
 
-# Front_End
+git fetch -a
 
-# Front_End
+git pull origin dev
 
-# Front_End
+git checkout -b new branch
 
-# Front_End
-
-# Front_End
-
-# Front_End
+git push origin new branch
