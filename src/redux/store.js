@@ -3,6 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { userLoginReducer } from "./reducers/userReducers";
 import { doctorDetailsReducer, doctorListReducer } from "./reducers/doctorsReducers";
+import { bookingReducer } from "./reducers/bookingReducers";
 
 const reducer = combineReducers({
     // doctorList
@@ -13,7 +14,7 @@ const reducer = combineReducers({
     // doctorUpdate: doctorUpdateReducer,
     // doctorReviewCreate: doctorReviewCreateReducer,
     // doctorTopRatedReducer:doctorTopRatedReducer,
-    // cart: cartReducer,
+    booking: bookingReducer,
     userLogin: userLoginReducer,
     // userRegister: userRegisterReducer,
     // userDetails:userDetailsReducer,
@@ -32,18 +33,18 @@ const reducer = combineReducers({
     
 })
 
-const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+const bookItemsFromStorage = localStorage.getItem('bookItems') ? JSON.parse(localStorage.getItem('bookItems')) : []
 
 
-const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+// const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
+// const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
 
 
 const initialState = {
-    // cart: {cartItems: cartItemsFromStorage,
-    //     shippingAddress: shippingAddressFromStorage,
-    // },
+    book: {bookItems: bookItemsFromStorage,
+        // shippingAddress: shippingAddressFromStorage,
+    },
     // userLogin:{userInfo: userInfoFromStorage}
 }
 const middleware = [thunk]
