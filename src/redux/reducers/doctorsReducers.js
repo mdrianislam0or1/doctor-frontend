@@ -6,7 +6,8 @@ export const doctorListReducer = (state = { doctors: [] }, action) => {
         case DOCTOR_LIST_REQUEST:
             return { loading: true, doctors: [] }
         case DOCTOR_LIST_SUCCESS:
-            return { loading: false, doctors: action.payload.doctors,pages: action.payload.pages,page: action.payload.page }
+            return { loading: false, doctors: action.payload}
+            // return { loading: false, doctors: action.payload.doctors,pages: action.payload.pages,page: action.payload.page }
         case DOCTOR_LIST_FAIL:
             return { loading: false, error: action.payload }
         default:
@@ -16,10 +17,10 @@ export const doctorListReducer = (state = { doctors: [] }, action) => {
 
 
 //doctor DETAILS REDUCER
-export const doctorDetailsReducer = (state = { doctor: {reviews:[]} }, action) => {
+export const doctorDetailsReducer = (state = { doctor: [] }, action) => {
     switch (action.type) {
         case DOCTOR_DETAILS_REQUEST:
-            return { loading: true, ...state }
+            return { loading: true, ...state}
         case DOCTOR_DETAILS_SUCCESS:
             return { loading: false, doctor: action.payload }
         case DOCTOR_DETAILS_FAIL:

@@ -2,7 +2,7 @@ import axios from "axios"
 import { DOCTOR_DETAILS_FAIL, DOCTOR_DETAILS_REQUEST, DOCTOR_DETAILS_SUCCESS, DOCTOR_LIST_FAIL, DOCTOR_LIST_REQUEST, DOCTOR_LIST_SUCCESS } from "../constants/doctorConstants"
 
 //LIST FOR DOCTOR
-export const listDoctors = (keyword = '',pageNumber = '') => async (dispatch) =>{
+export const listDoctors = () => async (dispatch) =>{
     try {
         dispatch({type: DOCTOR_LIST_REQUEST})
         // const {data} = await axios.get(`/api/doctors?keyword=${keyword}&pageNumber=${pageNumber}`)
