@@ -4,7 +4,6 @@ export const bookingReducer = (state = { bookItems: [],shippingAddress: {} }, ac
     switch (action.type) {
         case BOOKING_ADD_ITEM:
             const item = action.payload
-
             const existItem = state.bookItems.find(x => x.doctor === item.doctor)
             if (existItem) {
                 return {
@@ -17,11 +16,11 @@ export const bookingReducer = (state = { bookItems: [],shippingAddress: {} }, ac
                     bookItems: [...state.bookItems, item]
                 }
             }
-        // case BOOKING_REMOVE_ITEM:
-        //     return {
-        //         ...state,
-        //         bookItems: state.bookItems.filter((x) => x.doctor !== action.payload)
-        //     }
+        case BOOKING_REMOVE_ITEM:
+            return {
+                ...state,
+                bookItems: state.bookItems.filter((x) => x.doctor !== action.payload)
+            }
         // case BOOKING_SAVE_SHIPPING_ADDRESS:
         //     return {
         //         ...state,

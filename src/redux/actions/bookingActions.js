@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { BOOKING_ADD_ITEM } from '../constants/bookingConstant'
+import { BOOKING_ADD_ITEM, BOOKING_REMOVE_ITEM, BOOKING_SAVE_PAYMENT_METHOD, BOOKING_SAVE_SHIPPING_ADDRESS } from '../constants/bookingConstant'
 export const addToBook = (id,serialNumber)=> async(dispatch,getState) =>{
-    const {data} = await axios.get(`/api/doctors/${id}`)
+    const {data} = await axios.get(`http://localhost:5000/api/doctors/${id}`)
 
     dispatch({
         type: BOOKING_ADD_ITEM,
@@ -9,7 +9,11 @@ export const addToBook = (id,serialNumber)=> async(dispatch,getState) =>{
             doctor: data._id,
             name: data.name,
             image:data.image,
-            price:data.price,
+            phone: data.phone,
+            address: data.address,
+            email: data.email,
+            speciality: data.speciality,
+            degree: data.degree,
             serial: data.serial,
             serialNumber
         }
@@ -17,3 +21,37 @@ export const addToBook = (id,serialNumber)=> async(dispatch,getState) =>{
 
     localStorage.setItem('bookItems',JSON.stringify(getState().book.bookItems))
 }
+
+
+
+export const removeFromBooking = (id) =>(dispatch,getState) =>{
+    dispatch({
+        type: BOOKING_REMOVE_ITEM,
+        payload: id,
+    })
+
+    localStorage.setItem('bookItems',JSON.stringify(getState().book.bookItems))
+} 
+
+
+// export const saveShippingAddress =(data) =>(dispatch) =>{
+//     dispatch({
+//         type: BOOKING_SAVE_SHIPPING_ADDRESS,
+//         payload: data,
+//     })
+
+//     localStorage.setItem('shippingAddress', JSON.stringify(data))
+// }
+
+
+
+// export const savePaymentMethod =(data) =>(dispatch) =>{
+//     dispatch({
+//         type: BOOKING_SAVE_PAYMENT_METHOD,
+//         payload: data,
+//     })
+
+//     localStorage.setItem('paymentMethod', JSON.stringify(data))
+// }
+
+
