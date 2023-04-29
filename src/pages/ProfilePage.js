@@ -25,12 +25,13 @@ const ProfilePage = () => {
             } else {
                 setName(user.name)
                 setEmail(user.email)
-                setRole(role);
-                setPassword(password);
-                setAddress(address);
-                setPhone(phone);
-                setImage(image);
-                setDate(date);
+                setRole(user.role);
+                setPassword(user.password);
+                setConfirmPassword(user.confirmPassword);
+                setAddress(user.address);
+                setPhone(user.phone);
+                setImage(user.image);
+                setDate(user.date);
             }
         }
     }, [navigate, userInfo,user ])
