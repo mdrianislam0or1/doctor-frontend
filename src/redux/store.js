@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { userDetailsReducer, userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
+import { userDetailsReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from "./reducers/userReducers";
 import { doctorDetailsReducer, doctorListReducer } from "./reducers/doctorsReducers";
 import { bookingReducer } from "./reducers/bookingReducers";
 
@@ -18,7 +18,7 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails:userDetailsReducer,
-    // userUpdateProfile: userUpdateProfileReducer,
+    userUpdateProfile: userUpdateProfileReducer,
     // userList:userListReducer,
     // userDelete:userDeleteReducer,
     // userUpdate:userUpdateReducer,
@@ -38,12 +38,13 @@ const bookItemsFromStorage = localStorage.getItem('bookItems') ? JSON.parse(loca
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
-// const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
+const processAddressFromStorage = localStorage.getItem('processAddress') ? JSON.parse(localStorage.getItem('processAddress')) : {}
 
 
 const initialState = {
-    book: {bookItems: bookItemsFromStorage,
-        // shippingAddress: shippingAddressFromStorage,
+    book: {
+        bookItems: bookItemsFromStorage,
+        processAddress: processAddressFromStorage,
     },
     userLogin:{userInfo: userInfoFromStorage}
 }

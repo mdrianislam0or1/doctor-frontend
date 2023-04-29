@@ -1,6 +1,6 @@
-import { BOOKING_ADD_ITEM, BOOKING_REMOVE_ITEM, BOOKING_SAVE_PAYMENT_METHOD, BOOKING_SAVE_SHIPPING_ADDRESS } from "../constants/bookingConstant"
+import { BOOKING_ADD_ITEM, BOOKING_REMOVE_ITEM, BOOKING_SAVE_PAYMENT_METHOD, BOOKING_SAVE_PROCESS_ADDRESS } from "../constants/bookingConstant"
 
-export const bookingReducer = (state = { bookItems: [],shippingAddress: {} }, action) => {
+export const bookingReducer = (state = { bookItems: [],processAddress: {} }, action) => {
     switch (action.type) {
         case BOOKING_ADD_ITEM:
             const item = action.payload
@@ -21,12 +21,12 @@ export const bookingReducer = (state = { bookItems: [],shippingAddress: {} }, ac
                 ...state,
                 bookItems: state.bookItems.filter((x) => x.doctor !== action.payload)
             }
-        // case BOOKING_SAVE_SHIPPING_ADDRESS:
-        //     return {
-        //         ...state,
-        //         shippingAddress: action.payload,
+        case BOOKING_SAVE_PROCESS_ADDRESS:
+            return {
+                ...state,
+                processAddress: action.payload,
 
-        //     }
+            }
         // case BOOKING_SAVE_PAYMENT_METHOD:
         //     return {
         //         ...state,

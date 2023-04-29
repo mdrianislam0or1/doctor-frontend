@@ -16,7 +16,7 @@ const {userInfo} = userLogin
 const logOutHandler = () => {
     dispatch(logout())
     // localStorage.removeItem('userInfo')
-    window.location.href = '/login'
+    window.location.to = '/login'
 }
 
     return (
@@ -30,7 +30,7 @@ const logOutHandler = () => {
                         className="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
                         type="button"
                         data-te-collapse-init
-                        data-te-target="#navbarSupportedContent3"
+                        data-te-target="/navbarSupportedContent3"
                         aria-controls="navbarSupportedContent3"
                         aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -55,7 +55,7 @@ const logOutHandler = () => {
                         id="navbarSupportedContent3"
                         data-te-collapse-item>
 
-                        <Link className="pr-2 text-xl text-black dark:text-neutral-200" href="#"
+                        <Link className="pr-2 text-xl text-black dark:text-neutral-200" to="/"
                         >Navbar</Link>
 
                         <ul
@@ -66,7 +66,7 @@ const logOutHandler = () => {
                                 <Link
                                     className="active disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
                                     aria-current="page"
-                                    href="#"
+                                    to="/"
                                     data-te-nav-link-ref
                                 >Home</Link>
                             </li>
@@ -85,7 +85,7 @@ const logOutHandler = () => {
                                 <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
                                 <Link
                                     className="p-0 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                                    href="#"
+                                    to="/"
                                     data-te-nav-link-ref
                                 >Features</Link>
                             </li>
@@ -96,9 +96,16 @@ const logOutHandler = () => {
                             <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
                                 <Link
                                     className="p-0 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                                    href="#"
+                                    to="/process"
                                     data-te-nav-link-ref
-                                >Pricing</Link>
+                                >Process</Link>
+                            </li>
+                            <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+                                <Link
+                                    className="p-0 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+                                    to="/login"
+                                    data-te-nav-link-ref
+                                >Login</Link>
                             </li>
                         </ul>
                     </div>

@@ -6,6 +6,7 @@ import BookingPage from "./pages/BookingPage";
 import Navbar from "./components/Navbar";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
+import ProcessPage from "./pages/ProcessPage";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/register" element={<RegisterPage />} />
         <Route exact path="/profile" element={<ProfilePage />} />
+        <Route exact path="/process" element={<ProcessPage />} />
         <Route exact path="/doctors/:id" element={<DoctorPage />} />
         <Route exact path="/booking/:id?" element={<BookingPage />} />
       </Routes>

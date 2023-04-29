@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader';
-import { getUserDetails } from '../redux/actions/userAction';
+import { getUserDetails, updateUserProfile } from '../redux/actions/userAction';
 
 const ProfilePage = () => {
 
@@ -15,6 +15,9 @@ const ProfilePage = () => {
     // USER LOGIN
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
+    // USER UPDATE VALUE
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
+    const { success } = userUpdateProfile
 
     useEffect(() => {
         if (!userInfo) {
@@ -55,7 +58,19 @@ const ProfilePage = () => {
         } else {
 
             //DISPATCH UPDATE
+            dispatch(updateUserProfile({
+                
+                id: user._id,
+                name,
+                role,
+                email,
+                password,
+                address,
+                phone,
+                image,
+                date
 
+            }))
 
         }
 
@@ -75,8 +90,9 @@ const ProfilePage = () => {
         <div className='grid grid-cols-2'>
             <div className='bg-yellow-200'>
                 <h1>Profile Page</h1>
-                {error && <h1>{error}</h1>}
-                {message && <h1>{message}</h1>}
+                {error && <h1 className='bg-red-300 text-black-300 2xl'>{error}</h1>}
+                {message && <h1 className='bg-pink-300 text-black-300 2xl'>{message}</h1>}
+                {success && <h1 className='bg-green-300 text-black-300 2xl'>{success} PROFILE UPDATED</h1>}
                 {loading && <Loader>{loading}</Loader>}
                 <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
 
