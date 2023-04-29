@@ -27,18 +27,9 @@ const HomePage = () => {
     const doctorList = useSelector(state => state.doctorList)
     const { loading, error, doctors } = doctorList
     return (
-        <div>
-
-            {/* {doctor.map((d,i)=>(
-            <div key={d._id}>
-                <h1>{d.name}</h1>
-            </div>
-        ))} */}
-
-            {loading ? <Loader /> : error ? <h3>{error}</h3> :
-                (
-                   
-                    doctors.map((doctor) => (
+           <div className='grid grid-cols-4 gap-4'>
+           {loading ? <Loader /> : error ? <h3>{error}</h3> :
+                (doctors.map((doctor) => (
                         <div key={doctor._id}>
                             <h1>{doctor.name}</h1>
                             <Doctor doctor={doctor} />
@@ -46,10 +37,9 @@ const HomePage = () => {
                     )
                     )
                 )
-                
-                }
 
-        </div>
+            }
+           </div>
     )
 }
 

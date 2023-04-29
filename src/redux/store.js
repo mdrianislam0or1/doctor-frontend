@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { userLoginReducer } from "./reducers/userReducers";
+import { userDetailsReducer, userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
 import { doctorDetailsReducer, doctorListReducer } from "./reducers/doctorsReducers";
 import { bookingReducer } from "./reducers/bookingReducers";
 
@@ -16,8 +16,8 @@ const reducer = combineReducers({
     // doctorTopRatedReducer:doctorTopRatedReducer,
     booking: bookingReducer,
     userLogin: userLoginReducer,
-    // userRegister: userRegisterReducer,
-    // userDetails:userDetailsReducer,
+    userRegister: userRegisterReducer,
+    userDetails:userDetailsReducer,
     // userUpdateProfile: userUpdateProfileReducer,
     // userList:userListReducer,
     // userDelete:userDeleteReducer,
@@ -36,7 +36,7 @@ const reducer = combineReducers({
 const bookItemsFromStorage = localStorage.getItem('bookItems') ? JSON.parse(localStorage.getItem('bookItems')) : []
 
 
-// const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
 // const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
 
@@ -45,7 +45,7 @@ const initialState = {
     book: {bookItems: bookItemsFromStorage,
         // shippingAddress: shippingAddressFromStorage,
     },
-    // userLogin:{userInfo: userInfoFromStorage}
+    userLogin:{userInfo: userInfoFromStorage}
 }
 const middleware = [thunk]
 
