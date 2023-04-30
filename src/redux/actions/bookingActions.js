@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BOOKING_ADD_ITEM, BOOKING_REMOVE_ITEM, BOOKING_SAVE_PROCESS_ADDRESS } from '../constants/bookingConstant'
+import { BOOKING_ADD_ITEM, BOOKING_REMOVE_ITEM, BOOKING_SAVE_PAYMENT_METHOD, BOOKING_SAVE_PROCESS_ADDRESS } from '../constants/bookingConstant'
 export const addToBook = (id,serialNumber)=> async(dispatch,getState) =>{
     const {data} = await axios.get(`http://localhost:5000/api/doctors/${id}`)
 
@@ -45,13 +45,13 @@ export const saveProcessAddress =(data) =>(dispatch) =>{
 
 
 
-// export const savePaymentMethod =(data) =>(dispatch) =>{
-//     dispatch({
-//         type: BOOKING_SAVE_PAYMENT_METHOD,
-//         payload: data,
-//     })
+export const savePaymentMethod =(data) =>(dispatch) =>{
+    dispatch({
+        type: BOOKING_SAVE_PAYMENT_METHOD,
+        payload: data,
+    })
 
-//     localStorage.setItem('paymentMethod', JSON.stringify(data))
-// }
+    localStorage.setItem('paymentMethod', JSON.stringify(data))
+}
 
 

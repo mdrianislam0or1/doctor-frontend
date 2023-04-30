@@ -27,12 +27,12 @@ export const bookingReducer = (state = { bookItems: [],processAddress: {} }, act
                 processAddress: action.payload,
 
             }
-        // case BOOKING_SAVE_PAYMENT_METHOD:
-        //     return {
-        //         ...state,
-        //         paymentMethod: action.payload,
+        case BOOKING_SAVE_PAYMENT_METHOD:
+            return {
+                ...state,
+                paymentMethod: action.payload,
 
-        //     }
+            }
         default:
             return state
     }

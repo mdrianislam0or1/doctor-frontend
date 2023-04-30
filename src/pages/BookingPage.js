@@ -23,6 +23,9 @@ const BookingPage = () => {
     const booking = useSelector((state) => state.booking)
     const { bookItems } = booking
 
+    // const bookItems = useSelector(state => state.bookItems)
+
+
     const removeFromBookHandler = (id) => {
         dispatch(removeFromBooking(id))
         console.log("remove")
@@ -34,13 +37,13 @@ const BookingPage = () => {
     }
     return (
         <div>BookingPage
-            {bookItems.length === 0 ? (
+            {bookItems?.length === 0 ? (
                 <Link to="/">
                     Go to Home
                 </Link>
             ) : (
                 <div>
-                    {bookItems.map((bookItem) => (
+                    {bookItems?.map((bookItem) => (
                             <div className='grid grid-cols-4 gap-4'>
                                 <div key={bookItem._id}>
                             <Link to={`/doctor/${bookItem.doctor}`}>

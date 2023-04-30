@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { saveProcessAddress } from '../redux/actions/bookingActions';
+import CheckoutSteps from '../components/CheckoutSteps';
 
 const ProcessPage = () => {
 
@@ -30,6 +31,7 @@ const [time, setTime] = useState(processAddress?.time || '');
 const [message, setMessage] = useState(null);
 const [address, setAddress] = useState(processAddress?.address || '');
 const [phone, setPhone] = useState(processAddress?.phone || '');
+const [taka, setTaka] = useState(processAddress?.taka || '');
 const [image, setImage] = useState(processAddress?.image || '');
 const [date, setDate] = useState(processAddress?.date || '');
 
@@ -40,7 +42,7 @@ const [date, setDate] = useState(processAddress?.date || '');
         if(!description){
             setMessage('Fill in description')
         }else{
-          dispatch(saveProcessAddress(description, name , email ,postalCode,country,time,address,phone,image  ,date))
+          dispatch(saveProcessAddress({description, name , email ,postalCode,country,time,address,phone,taka,image  ,date}))
             navigate("/payment")
         }
         
@@ -52,6 +54,7 @@ const [date, setDate] = useState(processAddress?.date || '');
         console.log(time);
         console.log(address);
         console.log(phone);
+        console.log(taka);
         console.log(image);
         console.log(date);
     }
@@ -60,6 +63,7 @@ const [date, setDate] = useState(processAddress?.date || '');
   return (
     <>
             <h1>ProcessPage Page</h1>
+            <CheckoutSteps step1 step2/>
             {error && <h1>{error}</h1>}
             {message && <h1>{message}</h1>}
             {loading && <Loader>{loading}</Loader>}
@@ -82,6 +86,8 @@ const [date, setDate] = useState(processAddress?.date || '');
                     <input id="country" name="country" type="text" value={country} onChange={e => setCountry(e.target.value)} required className="block  sm:text-sm sm:leading-6" />
                     <label className="block text-sm font-medium leading-6 text-gray-900">Phone</label>
                     <input id="phone" name="phone" type="text" value={phone} onChange={e => setPhone(e.target.value)} required className="block  sm:text-sm sm:leading-6" />
+                    <label className="block text-sm font-medium leading-6 text-gray-900">Amount</label>
+                    <input id="taka" name="taka" type="number" value={taka} onChange={e => setTaka(e.target.value)} required className="block  sm:text-sm sm:leading-6" />
                     <label className="block text-sm font-medium leading-6 text-gray-900">Image</label>
                     <input id="image" name="image" type="text" value={image} onChange={e => setImage(e.target.value)} required className="block  sm:text-sm sm:leading-6" />
                     <label className="block text-sm font-medium leading-6 text-gray-900">Date</label>
