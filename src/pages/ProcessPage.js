@@ -23,29 +23,30 @@ const ProcessPage = () => {
     }, [navigate, redirect, userInfo])
 
     const [description, setDecription] = useState(processAddress?.description || '');
-const [name, setName] = useState(processAddress?.name || '');
-const [email, setEmail] = useState(processAddress?.email || '');
-const [postalCode, setPostalCode] = useState(processAddress?.postalCode || '');
-const [country, setCountry] = useState(processAddress?.country || '');
-const [time, setTime] = useState(processAddress?.time || '');
-const [message, setMessage] = useState(null);
-const [address, setAddress] = useState(processAddress?.address || '');
-const [phone, setPhone] = useState(processAddress?.phone || '');
-const [taka, setTaka] = useState(processAddress?.taka || '');
-const [image, setImage] = useState(processAddress?.image || '');
-const [date, setDate] = useState(processAddress?.date || '');
+    const [name, setName] = useState(processAddress?.name || '');
+    const [email, setEmail] = useState(processAddress?.email || '');
+    const [postalCode, setPostalCode] = useState(processAddress?.postalCode || '');
+    const [country, setCountry] = useState(processAddress?.country || '');
+    const [time, setTime] = useState(processAddress?.time || '');
+    const [message, setMessage] = useState(null);
+    const [address, setAddress] = useState(processAddress?.address || '');
+    const [phone, setPhone] = useState(processAddress?.phone || '');
+    const [taka, setTaka] = useState(processAddress?.taka || '');
+    const [image, setImage] = useState(processAddress?.image || '');
+    const [date, setDate] = useState(processAddress?.date || '');
+    const [status, setStatus] = useState(processAddress?.status || '');
 
 
     const submitHandler = (e) => {
         e.preventDefault();
 
-        if(!description){
+        if (!description) {
             setMessage('Fill in description')
-        }else{
-          dispatch(saveProcessAddress({description, name , email ,postalCode,country,time,address,phone,taka,image  ,date}))
+        } else {
+            dispatch(saveProcessAddress({ description, name, email, postalCode, country, time, address, phone, taka, image, date,status }))
             navigate("/payment")
         }
-        
+
         console.log(name);
         console.log(description);
         console.log(email);
@@ -60,10 +61,10 @@ const [date, setDate] = useState(processAddress?.date || '');
     }
 
 
-  return (
-    <>
+    return (
+        <>
             <h1>ProcessPage Page</h1>
-            <CheckoutSteps step1 step2/>
+            <CheckoutSteps step1 step2 />
             {error && <h1>{error}</h1>}
             {message && <h1>{message}</h1>}
             {loading && <Loader>{loading}</Loader>}
@@ -77,6 +78,50 @@ const [date, setDate] = useState(processAddress?.date || '');
                     <input id="description" name="description" type="text" value={description} onChange={e => setDecription(e.target.value)} required className="block  sm:text-sm sm:leading-6" />
                     <label className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                     <input id="email" name="email" type="text" value={email} onChange={e => setEmail(e.target.value)} required className="block  sm:text-sm sm:leading-6" />
+
+
+
+                    <label className="inline-flex items-center ml-6">
+                        <input
+                            id="requested"
+                            name="paymentMethod"
+                            type="radio"
+                            value="requested"
+                            className="form-radio h-4 w-4 text-indigo-600"
+                            onChange={(e) => setStatus(e.target.value)}
+                            checked={status === 'requested'}
+                            required
+                        />
+                        <span className="ml-2">requested</span>
+                    </label>
+
+                    <label className="inline-flex items-center ml-6">
+                        <input
+                            id="pandding"
+                            name="paymentMethod"
+                            type="radio"
+                            value="pandding"
+                            className="form-radio h-4 w-4 text-indigo-600"
+                            onChange={(e) => setStatus(e.target.value)}
+                            checked={status === 'pandding'}
+                            required
+                        />
+                        <span className="ml-2">pandding</span>
+                    </label>
+                    <label className="inline-flex items-center ml-6">
+                        <input
+                            id="emergency"
+                            name="paymentMethod"
+                            type="radio"
+                            value="emergency"
+                            className="form-radio h-4 w-4 text-indigo-600"
+                            onChange={(e) => setStatus(e.target.value)}
+                            checked={status === 'emergency'}
+                            required
+                        />
+                        <span className="ml-2">emergency</span>
+                    </label>
+
 
                     <label className="block text-sm font-medium leading-6 text-gray-900">Address</label>
                     <input id="address" name="address" type="text" value={address} onChange={e => setAddress(e.target.value)} required className="block  sm:text-sm sm:leading-6" />
@@ -98,7 +143,7 @@ const [date, setDate] = useState(processAddress?.date || '');
                 </form>
             </div>
         </>
-  )
+    )
 }
 
 export default ProcessPage

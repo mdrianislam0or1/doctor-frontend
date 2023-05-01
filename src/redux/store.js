@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import { userDetailsReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from "./reducers/userReducers";
 import { doctorDetailsReducer, doctorListReducer } from "./reducers/doctorsReducers";
 import { bookingReducer } from "./reducers/bookingReducers";
+import { bookedCreateReducer, bookedDetailsReducer, bookedPayReducer } from "./reducers/bookReducer";
 
 const reducer = combineReducers({
     // doctorList
@@ -23,9 +24,9 @@ const reducer = combineReducers({
     // userDelete:userDeleteReducer,
     // userUpdate:userUpdateReducer,
 
-    // orderCreate: orderCreateReducer,
-    // orderDetails: orderDetailsReducer,
-    // orderPay: orderPayReducer,
+    bookedCreate: bookedCreateReducer,
+    bookedDetails: bookedDetailsReducer,
+    bookedPay: bookedPayReducer,
     // orderListMy: orderListMyReducer,
     // orderList: orderListReducer,
     // orderDeliver: orderDeliverReducer,

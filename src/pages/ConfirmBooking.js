@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { saveprocessAddress } from '../redux/actions/bookingActions';
 import CheckoutSteps from '../components/CheckoutSteps';
-import Loader from '../components/Loader';
+import { createBooked } from '../redux/actions/bookActions';
 
 const ConfirmBooking = () => {
 
@@ -12,82 +11,141 @@ const ConfirmBooking = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const userRegister = useSelector(state => state.userRegister)
-    const { loading, error, userInfo } = userRegister
-    const redirect = window.location.search ? window.location.search.split('=')[1] : '/'
+
+
+
+    // const processAddress = booking.processAddress;
+    // console.log("processAddress", processAddress);
+    console.log("booking", booking);
+
+    // const bookItems = booking.bookItems.map((item) => ({
+    //     name: item.name,
+    //     serial: item.serial,
+    //     degree: item.degree,
+    //     address: item.address,
+    //     email: item.email,
+    //     phone: item.phone,
+    //     speciality: item.speciality,
+    // }));
+    // console.log("bookItems from consolle log", bookItems);
+
+    // console.log("i am from confirm booking", booking.processAddress)
+    // console.log("i am from confirm booking", booking.paymentMethod.paymentMethod)
+    // console.log("i am from confirm booking", booking.bookItems)
+
+
+
+    //POST TO BACKEND
+
+    const bookedCreate = useSelector(state => state.bookedCreate)
+    const {booked, error, success } = bookedCreate
+
 
     useEffect(() => {
-        if (userInfo) {
-            navigate(redirect)
+        if (success) {
+            navigate(`/booked/${booked._id}`)
         }
-    }, [navigate, redirect, userInfo])
-
-    
-    // console.log("i am from confirm booking", booking.processAddress)
-    console.log("i am from confirm booking", booking.paymentMethod.paymentMethod)
-    console.log("i am from confirm booking", booking.bookItems)
+    }, [navigate, success, booked])
 
 
-  return (
-    <div div className='px-20 '>
-        <CheckoutSteps step1 step2 step3 step4/>
-    <h1>Confirm Order Page</h1>
-    <div>
-        <div className="flex flex-col sm:flex-row justify-between">
-            <div className=' grid grid-cols-4 gap-4 align-middle'>
-               <div className=' col-span-1'>
-                    <h2>bookinging </h2>
-                    <p className="mt-2 text-sm text-black-500">Please confirm your order</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.address}</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.name}</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.email}</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.postalCode}</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.country}</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.phone}</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.taka}</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.date}</p>
-                    <p className="mt-2 text-sm text-black-500">{booking.processAddress.time}</p>
-               </div>
-               <div className=' col-span-1'>
-                <h2>payment </h2>
-                <strong>{booking.paymentMethod.paymentMethod} </strong>
-               </div>
+    const confirmBooking = () => {
 
-               <div className=' col-span-1'>
-                    {booking.bookItems.length === 0 ? (<span className>Your Booking Item is Empty</span> ):
-                    (
-                       <div>
-                        {booking.bookItems.map((bookItem, index) =>(
-                            <div key={index} className="grid grid-cols-3 gap-4">
-                                <div className="col-span-1">
-                                    <strong>
-                                     <Link to={`/doctors/${bookItem.name}`}>
-                                     {bookItem.name}
-                                     </Link>
-                                        
-                                    </strong>
-                                    <strong>{bookItem.serial}</strong>
-                                </div>
-                                <div className="col-span-1">
-                                    {bookItem.degree}
-                                    {bookItem.address}
-                                    {bookItem.email}
-                                    {bookItem.phone}
-                                    {bookItem.speciality}
-                                </div>
-                            </div>
-                        ))}
-                       </div> 
-                    )}
-               </div>
+        dispatch(createBooked({
+            address: booking.processAddress.address,
+            country: booking.processAddress.country,
+            date: booking.processAddress.date,
+            description: booking.processAddress.description,
+            email: booking.processAddress.email,
+            image: booking.processAddress.image,
+            name: booking.processAddress.name,
+            phone: booking.processAddress.phone,
+            postalCode: booking.processAddress.postalCode,
+            status: booking.processAddress.status,
+            taka: booking.processAddress.taka,
+            time: booking.processAddress.time,
+            paymentMethod: booking.paymentMethod.paymentMethod,
+            // processAddress,
+            bookItems: booking.bookItems,
+            // paymentMethod: booking.paymentMethod.paymentMethod,
+
+            // taka:booking.processAddress.taka,
+
+        }))
+    }
+    return (
+        <div div className='px-20 '>
+            <CheckoutSteps step1 step2 step3 step4 />
+            <h1>Confirm Order Page</h1>
+            <div>
+                <div className="flex flex-col sm:flex-row justify-between">
+                    <div className=' grid grid-cols-4 gap-4 align-middle'>
+                        <div className=' col-span-1'>
+                            <h2>bookinging </h2>
+                            <p className="mt-2 text-sm text-black-500">Please confirm your order</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.address}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.name}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.email}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.postalCode}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.country}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.phone}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.taka}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.date}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.time}</p>
+                            <p className="mt-2 text-sm text-black-500">{booking.processAddress.status}</p>
+                        </div>
+                        <div className=' col-span-1'>
+                            <h2>payment </h2>
+                            <strong>{booking.paymentMethod.paymentMethod} </strong>
+                        </div>
+
+                        <div className=' col-span-1'>
+                            {booking.bookItems.length === 0 ? (<span className>Your Booking Item is Empty</span>) :
+                                (
+                                    <div>
+                                        {booking.bookItems.map((bookItem, index) => (
+                                            <div key={index} className="grid grid-cols-4 gap-4">
+                                                <div className="col-span-1">
+                                                    <strong>
+                                                        <Link to={`/doctors/${bookItem.name}`}>
+                                                            {bookItem.name}
+                                                        </Link>
+
+                                                    </strong>
+                                                    <strong>{bookItem.serial}</strong>
+                                                </div>
+                                                <div className="col-span-1">
+                                                    {bookItem.degree}
+                                                    {bookItem.address}
+                                                    {bookItem.email}
+                                                    {bookItem.phone}
+                                                    {bookItem.speciality}
+                                                </div>
+
+                                                {error && <h1>{error}</h1>}
+
+                                                <div className="col-span-1">
+                                                    <strong>
+                                                        Amount : {booking.processAddress.taka}
+                                                    </strong>
+                                                    <strong>
+                                                        <button className=' bg-pink-300 text-base rounded-md'
+                                                            disabled={booking.bookItems === 0}
+                                                            onClick={confirmBooking}
+                                                        >
+                                                            Book Confirm
+                                                        </button>
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    {error && <h1>{error}</h1>}
-    {loading && <Loader>{loading}</Loader>}
-</div>
-  )
+    )
 }
 
 export default ConfirmBooking
