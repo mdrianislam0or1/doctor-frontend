@@ -1,39 +1,69 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { getBookedDetails } from '../redux/actions/bookActions';
+import { getBookedDetails, payBooked } from '../redux/actions/bookActions';
 import Loader from '../components/Loader';
-
+import axios from 'axios';
+// import { PayPalButton } from "react-paypal-button-v2";
+import styled from 'styled-components';
+import { BOOKED_PAY_RESET } from '../redux/constants/bookConstant';
 const BookedPage = () => {
 
-    
-        const booking = useSelector(state => state.booking)
-        const params = useParams()
-        const dispatch = useDispatch();
-        const navigate = useNavigate();
-        const bookedId = params.id;
-    
+    const [sdkReady, setSdkReady] = useState(false)
+    const booking = useSelector(state => state.booking)
+    const params = useParams()
+    const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    const bookedId = params.id;
 
-    
-        //POST TO BACKEND
-        const bookedDetails = useSelector(state => state.bookedDetails)
-        const {booked, error, loading } = bookedDetails
-    
-    
-        useEffect(() => {
-            dispatch(getBookedDetails(bookedId))
-        }, [dispatch,bookedId])
-    
-    
-        const confirmBooking = () => {
-    
+
+
+    //POST TO BACKEND
+    const bookedDetails = useSelector(state => state.bookedDetails)
+    const { booked, error, loading } = bookedDetails
+
+    //POST FOR BOOKED PAY
+    const bookedPay = useSelector(state => state.bookedPay)
+    const { loading: loadingPay, success: successPay } = bookedPay
+
+
+    useEffect(() => {
+        const addPayPalScript = async () => {
+            const { data: bookedId } = await axios.get(`http://localhost:5000/api/config/paypal`)
+            const script = document.createElement('script')
+            script.type = 'text/javascript'
+            script.src = `https://www.paypal.com/sdk/js?client-id=${bookedId}`
+            script.async = true
+            script.onload = () => {
+                setSdkReady(true)
+            }
+            document.body.appendChild(script)
         }
 
+        if (!booked || successPay) {
+            dispatch({type: BOOKED_PAY_RESET})
+            dispatch(getBookedDetails(bookedId))
+        } else if (!booked.isPaid) {
+            if (!window.paypal) {
+                addPayPalScript()
+            } else {
+                setSdkReady(true)
+            }
+        }
+
+    }, [dispatch, bookedId, successPay, booked])
 
 
-  return loading ? <Loader/> : error ? <h1>{error}</h1> : <>
-  
-  <div div className='px-20 '>
+
+    const successPaymentHandler =(paymentResult)=>{
+        console.log(paymentResult)
+        dispatch(payBooked(params.id,paymentResult))
+    }
+
+
+    return loading ? <Loader /> : error ? <h1>{error}</h1> : <>
+
+        <div div className='px-20 '>
             <h1>Confirm Booke Details Page {booked._id}</h1>
             <h1>Confirm Booke Details Page {booked.email}</h1>
             <div>
@@ -52,8 +82,8 @@ const BookedPage = () => {
                             <p className="mt-2 text-sm text-black-500">{booked.date}</p>
                             <p className="mt-2 text-sm text-black-500">{booked.time}</p>
                             <p className="mt-2 text-sm text-black-500">{booked.status}</p>
-                        
-                        {booked.isDelivered ? <h1>{booked.deliveredAt}</h1> : <h1>Not delivered</h1>}
+
+                            {booked.isDelivered ? <h1>{booked.deliveredAt}</h1> : <h1>Not delivered</h1>}
 
 
                         </div>
@@ -96,13 +126,16 @@ const BookedPage = () => {
 
 
                                                     <strong>
-                                                        
-                                                        <button className=' bg-pink-300 text-base rounded-md'
-                                                            disabled={booking.bookItems === 0}
-                                                            onClick={confirmBooking}
-                                                        >
-                                                            Book Confirm
-                                                        </button>
+                                                         {!booked.isPaid && (
+                                <div>
+                                    {loadingPay && <Loader/>}
+                                    {!sdkReady ? (
+                                        <Loader/>
+                                    ) : (<button amount={booked.taka}
+                                    onSuccess={successPaymentHandler}
+                                    />)}
+                                </div>
+                            )}
                                                     </strong>
                                                 </div>
                                             </div>
@@ -114,7 +147,7 @@ const BookedPage = () => {
                 </div>
             </div>
         </div>
-  </>
+    </>
 }
 
 export default BookedPage

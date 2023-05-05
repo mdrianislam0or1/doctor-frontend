@@ -64,18 +64,13 @@ const ConfirmBooking = () => {
             taka: booking.processAddress.taka,
             time: booking.processAddress.time,
             paymentMethod: booking.paymentMethod.paymentMethod,
-            // processAddress,
             bookItems: booking.bookItems,
-            // paymentMethod: booking.paymentMethod.paymentMethod,
-
-            // taka:booking.processAddress.taka,
-
         }))
     }
     return (
         <div div className='px-20 '>
             <CheckoutSteps step1 step2 step3 step4 />
-            <h1>Confirm Order Page</h1>
+            <h1>Confirm Booked Page</h1>
             <div>
                 <div className="flex flex-col sm:flex-row justify-between">
                     <div className=' grid grid-cols-4 gap-4 align-middle'>
@@ -94,7 +89,7 @@ const ConfirmBooking = () => {
                             <p className="mt-2 text-sm text-black-500">{booking.processAddress.status}</p>
                         </div>
                         <div className=' col-span-1'>
-                            <h2>payment </h2>
+                            <h2>payment Method</h2>
                             <strong>{booking.paymentMethod.paymentMethod} </strong>
                         </div>
 
@@ -109,17 +104,17 @@ const ConfirmBooking = () => {
                                                         <Link to={`/doctors/${bookItem.name}`}>
                                                             {bookItem.name}
                                                         </Link>
-
                                                     </strong>
-                                                    <strong>{bookItem.serial}</strong>
-                                                </div>
-                                                <div className="col-span-1">
+                                                    <div className="col-span-1">
                                                     {bookItem.degree}
                                                     {bookItem.address}
                                                     {bookItem.email}
                                                     {bookItem.phone}
                                                     {bookItem.speciality}
                                                 </div>
+                                                    <strong>{bookItem.serial}</strong>
+                                                </div>
+                                                
 
                                                 {error && <h1>{error}</h1>}
 
