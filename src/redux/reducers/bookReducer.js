@@ -1,4 +1,4 @@
-import { BOOKED_CREATE_FAIL, BOOKED_CREATE_REQUEST, BOOKED_CREATE_SUCCESS, BOOKED_DETAILS_FAIL, BOOKED_DETAILS_REQUEST, BOOKED_DETAILS_SUCCESS, BOOKED_PAY_FAIL, BOOKED_PAY_REQUEST, BOOKED_PAY_RESET, BOOKED_PAY_SUCCESS } from "../constants/bookConstant"
+import { BOOKED_CREATE_FAIL, BOOKED_CREATE_REQUEST, BOOKED_CREATE_SUCCESS, BOOKED_DETAILS_FAIL, BOOKED_DETAILS_REQUEST, BOOKED_DETAILS_SUCCESS, BOOKED_LIST_MY_FAIL, BOOKED_LIST_MY_REQUEST, BOOKED_LIST_MY_RESET, BOOKED_LIST_MY_SUCCESS, BOOKED_PAY_FAIL, BOOKED_PAY_REQUEST, BOOKED_PAY_RESET, BOOKED_PAY_SUCCESS } from "../constants/bookConstant"
 
 export const bookedCreateReducer =(state ={},action)=>{
     switch(action.type){
@@ -84,32 +84,32 @@ export const bookedPayReducer =(state ={},action)=>{
 
 
 
-// export const bookedListMyReducer =(state ={bookeds:[]},action)=>{
-//     switch(action.type){
-//         case BOOKED_LIST_MY_REQUEST:
-//             return{
+export const bookedListMyReducer =(state ={bookeds:[]},action)=>{
+    switch(action.type){
+        case BOOKED_LIST_MY_REQUEST:
+            return{
                 
-//                 loading: true
-//             }
-//             case BOOKED_LIST_MY_SUCCESS:
-//                 return{
-//                     loading: false,
-//                     bookeds: action.payload,
-//                 }
-//             case BOOKED_LIST_MY_FAIL:
-//                 return{
-//                     loading: false,
-//                     error: action.payload,
-//                 }
-//             case BOOKED_LIST_MY_RESET:
-//                 return{
-//                     bookeds: []
-//                 }
-//             default:
-//                 return state
+                loading: true
+            }
+            case BOOKED_LIST_MY_SUCCESS:
+                return{
+                    loading: false,
+                    bookeds: action.payload,
+                }
+            case BOOKED_LIST_MY_FAIL:
+                return{
+                    loading: false,
+                    error: action.payload,
+                }
+            case BOOKED_LIST_MY_RESET:
+                return{
+                    bookeds: []
+                }
+            default:
+                return state
                 
-//     }
-// }
+    }
+}
 
 
 // //ALL booked LIST

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { BOOKED_CREATE_FAIL, BOOKED_CREATE_REQUEST, BOOKED_CREATE_SUCCESS, BOOKED_DETAILS_FAIL, BOOKED_DETAILS_REQUEST, BOOKED_DETAILS_SUCCESS, BOOKED_PAY_FAIL, BOOKED_PAY_REQUEST, BOOKED_PAY_SUCCESS } from "../constants/bookConstant"
+import { BOOKED_CREATE_FAIL, BOOKED_CREATE_REQUEST, BOOKED_CREATE_SUCCESS, BOOKED_DETAILS_FAIL, BOOKED_DETAILS_REQUEST, BOOKED_DETAILS_SUCCESS, BOOKED_LIST_MY_FAIL, BOOKED_LIST_MY_REQUEST, BOOKED_LIST_MY_SUCCESS, BOOKED_PAY_FAIL, BOOKED_PAY_REQUEST, BOOKED_PAY_SUCCESS } from "../constants/bookConstant"
 
 //Booked Create
 export const createBooked =(booked) => async (dispatch,getState) =>{
@@ -141,36 +141,36 @@ export const payBooked =(bookedId,paymentResult) => async (dispatch,getState) =>
 
 
 
-// //MY LIST ORDER
-// export const listMyOrders =() => async (dispatch,getState) =>{
-//     try{
-//         dispatch({
-//             type: BOOKED_LIST_MY_REQUEST,
-//         })
+//MY LIST BOOKEDS
+export const listMyBookeds =() => async (dispatch,getState) =>{
+    try{
+        dispatch({
+            type: BOOKED_LIST_MY_REQUEST,
+        })
 
-//         const{
-//             userLogin:{userInfo},
-//         } = getState()
+        const{
+            userLogin:{userInfo},
+        } = getState()
 
-//         const config ={
-//             headers:{
-//                 Authorization: `Bearer ${userInfo.token}`,
-//             },
-//         }
+        const config ={
+            headers:{
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
 
-//         const {data} = await axios.get(`/api/orders/myorders`,config)
+        const {data} = await axios.get(`http://localhost:5000/api/booked/mybookings`,config)
 
-//         dispatch({
-//             type: BOOKED_LIST_MY_SUCCESS,
-//             payload: data,
-//         })
-//     }catch(error){
-//         dispatch({
-//             type: BOOKED_LIST_MY_FAIL,
-//             payload: error.response && error.response.data.message ? error.response.data.message : error.message,
-//         })
-//     }
-// }
+        dispatch({
+            type: BOOKED_LIST_MY_SUCCESS,
+            payload: data,
+        })
+    }catch(error){
+        dispatch({
+            type: BOOKED_LIST_MY_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+        })
+    }
+}
 
 
 

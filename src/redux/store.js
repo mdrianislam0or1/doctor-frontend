@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import { userDetailsReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from "./reducers/userReducers";
 import { doctorDetailsReducer, doctorListReducer } from "./reducers/doctorsReducers";
 import { bookingReducer } from "./reducers/bookingReducers";
-import { bookedCreateReducer, bookedDetailsReducer, bookedPayReducer } from "./reducers/bookReducer";
+import { bookedCreateReducer, bookedDetailsReducer, bookedListMyReducer, bookedPayReducer } from "./reducers/bookReducer";
 
 const reducer = combineReducers({
     // doctorList
@@ -27,7 +27,7 @@ const reducer = combineReducers({
     bookedCreate: bookedCreateReducer,
     bookedDetails: bookedDetailsReducer,
     bookedPay: bookedPayReducer,
-    // orderListMy: orderListMyReducer,
+    bookedListMy: bookedListMyReducer,
     // orderList: orderListReducer,
     // orderDeliver: orderDeliverReducer,
     

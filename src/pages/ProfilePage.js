@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../redux/actions/userAction';
+import { listMyBookeds } from '../redux/actions/bookActions';
 
 const ProfilePage = () => {
 
@@ -12,6 +13,12 @@ const ProfilePage = () => {
     //USER DETAILS  
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
+
+    //USER DETAILS  
+    const bookedListMy = useSelector(state => state.bookedListMy)
+    const { loading:loadingBookeds, error:errorBookeds, bookeds } = bookedListMy    
+
+
     // USER LOGIN
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -25,6 +32,7 @@ const ProfilePage = () => {
         } else {
             if (!user.name) {
                 dispatch(getUserDetails('profile'));
+                dispatch(listMyBookeds())
             } else {
                 setName(user.name)
                 setEmail(user.email)
@@ -124,6 +132,47 @@ const ProfilePage = () => {
 
             <div className='bg-orange-500'>
                 <h1 className='text-2xl font-bold text-white'> My Profile DETAILS</h1>
+                {loadingBookeds ? <Loader/>: errorBookeds ? <h1>{errorBookeds}</h1>:(
+                    <div>
+                        <table class="table-auto">
+  <thead>
+    <tr>
+      <th>Song</th>
+      <th>Artist</th>
+      <th>Year</th>
+      <th>Year</th>
+      <th>Year</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    {bookeds.map(booked =>(
+        <tr key={booked._id}>
+            <td>{booked.name}</td>
+            <td>{booked.isPaid}</td>
+            <td>{booked.createdAt.substring(0,10)}</td>
+
+            <td>{booked.taka}</td>
+            <td>{booked.isPaid ? booked.paidAt.substring(0,10):(
+                <h1>NOt Paid</h1>
+            )}</td>
+            <td>{booked.isDeliverd ? booked.DeliverdAt.substring(0,10):(
+                <h1>NOt Deliverd</h1>
+            )}</td>
+            <td>
+                <Link to={`/booked/${booked._id}`}>
+                    <button>
+                        Details Button
+                    </button>
+                </Link>
+            </td>
+        </tr>
+    ))}
+  </tbody>
+</table>
+                    </div>
+                )}
+            
             </div>
         </div>
     )
