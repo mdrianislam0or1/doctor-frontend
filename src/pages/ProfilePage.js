@@ -14,6 +14,8 @@ const ProfilePage = () => {
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
 
+    console.log("from profile page",user)
+
     //USER DETAILS  
     const bookedListMy = useSelector(state => state.bookedListMy)
     const { loading:loadingBookeds, error:errorBookeds, bookeds } = bookedListMy    

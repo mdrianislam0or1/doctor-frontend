@@ -10,6 +10,8 @@ import ProcessPage from "./pages/ProcessPage";
 import PaymentPage from "./pages/PaymentPage";
 import ConfirmBooking from "./pages/ConfirmBooking";
 import BookedPage from "./pages/BookedPage";
+import UserListPage from "./pages/UserListPage";
+import UserEditPage from "./pages/UserEditPage";
 
 
 function App() {
@@ -27,6 +29,11 @@ function App() {
         <Route exact path="/booked/:id" element={<BookedPage />} />
         <Route exact path="/doctors/:id" element={<DoctorPage />} />
         <Route exact path="/booking/:id?" element={<BookingPage />} />
+        {/* admin */}
+        <Route exact path="/admin/userList" element={<UserListPage />} />
+        <Route exact path="/admin/user/:id/edit" element={<UserEditPage />} />
+      
+      
       </Routes>
 
 

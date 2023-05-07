@@ -92,6 +92,27 @@ const logOutHandler = () => {
                             )}
 
                             
+                            {userInfo && userInfo.isAdmin && (
+                                <div>
+                              
+                                <div class="">
+                                  <Link to="/admin/userlist" class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                                    Admin
+                                  </Link>
+                                  <Link to="/admin/doctorlist" class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                                    Doctor List
+                                  </Link>
+                                  
+                                  <Link to="/admin/orderlist" class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                                    Orders
+                                  </Link>
+                                  
+                                </div>
+                              </div>
+                            )}
+
+
+
 
                             <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
                                 <Link
