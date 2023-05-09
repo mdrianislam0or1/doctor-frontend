@@ -13,6 +13,7 @@ import BookedPage from "./pages/BookedPage";
 import UserListPage from "./pages/UserListPage";
 import UserEditPage from "./pages/UserEditPage";
 import DoctorListPage from "./pages/DoctorListPage";
+import DoctorEditPage from "./pages/DoctorEditPage";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route exact path="/admin/userList" element={<UserListPage />} />
         <Route exact path="/admin/doctorlist" element={<DoctorListPage />} />
         <Route exact path="/admin/user/:id/edit" element={<UserEditPage />} />
+        <Route exact path="/admin/doctor/:id/edit" element={<DoctorEditPage />} />
       
       
       </Routes>
