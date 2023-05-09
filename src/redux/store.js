@@ -1,8 +1,8 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { userDeleteReducer, userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from "./reducers/userReducers";
-import { doctorDetailsReducer, doctorListReducer } from "./reducers/doctorsReducers";
+import { userDeleteReducer, userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer } from "./reducers/userReducers";
+import {  doctorCreateReducer, doctorDeleteReducer, doctorDetailsReducer, doctorListReducer } from "./reducers/doctorsReducers";
 import { bookingReducer } from "./reducers/bookingReducers";
 import { bookedCreateReducer, bookedDetailsReducer, bookedListMyReducer, bookedPayReducer } from "./reducers/bookReducer";
 
@@ -10,8 +10,8 @@ const reducer = combineReducers({
     // doctorList
     doctorList: doctorListReducer,
     doctorDetails: doctorDetailsReducer,
-    // doctorDelete: doctorDeleteReducer,
-    // doctorCreate: doctorCreateReducer,
+    doctorDelete: doctorDeleteReducer,
+    doctorCreate: doctorCreateReducer,
     // doctorUpdate: doctorUpdateReducer,
     // doctorReviewCreate: doctorReviewCreateReducer,
     // doctorTopRatedReducer:doctorTopRatedReducer,
@@ -22,7 +22,7 @@ const reducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     userList:userListReducer,
     userDelete:userDeleteReducer,
-    // userUpdate:userUpdateReducer,
+    userUpdate:userUpdateReducer,
 
     bookedCreate: bookedCreateReducer,
     bookedDetails: bookedDetailsReducer,

@@ -2,7 +2,8 @@ import React, { useEffect, useId, useState } from 'react'
 import Loader from '../components/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { getUserDetails } from '../redux/actions/userAction';
+import { getUserDetails,updateUser } from '../redux/actions/userAction';
+import { USER_UPDATE_RESET } from '../redux/constants/userConstance';
 
 const UserEditPage = () => {
     const [role, setRole] = useState('');
@@ -26,29 +27,38 @@ const UserEditPage = () => {
 
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
-    console.log("Edit Page",user)
+    
+    const userUpdate = useSelector(state => state.userUpdate)
+    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = userUpdate
 
     useEffect(() => {
-        if(!user?.name ){
-            dispatch(getUserDetails(useId))
-        }else{
-            setName(user?.name)
-            setRole(user?.role)
-            setEmail(user?.email)
-            setIsAdmin(user?.isAdmin)
-            setPassword(user?.password)
-            setAddress(user?.address)
-            setPhone(user?.phone)
-            setPhone(user?.image)
-            setDate(user?.date)
-
+        if(successUpdate) {
+            dispatch({type: USER_UPDATE_RESET})
+            navigate('/admin/userlist')
+        }else {
+            if(!user?.name){
+                dispatch(getUserDetails(useId))
+            }else{
+                setName(user?.name)
+                setRole(user?.role)
+                setEmail(user?.email)
+                setIsAdmin(user?.isAdmin)
+                setPassword(user?.password)
+                setAddress(user?.address)
+                setPhone(user?.phone)
+                setPhone(user?.image)
+                setDate(user?.date)
+            }
         }
-    }, [dispatch,useId,user]);
+        
+    }, [dispatch,navigate, useId, user,successUpdate]);
 
 
 
     const submitHandler = (e) => {
         e.preventDefault();
+        dispatch(updateUser({_id:userId,name,role,email,isAdmin,password,address,phone,image,date}))
+
         // if ( password !== confirmPassword) {
         //     setMessage('Passwords do not match')
         // } else {
@@ -89,6 +99,9 @@ const UserEditPage = () => {
             <Link to='/admin/userlist' >
                 User List
             </Link>
+
+            {loadingUpdate && <Loader />}
+            {errorUpdate && <h1>{errorUpdate}</h1>}
             {loading ? <Loader /> : error ? <h1>{error}</h1> : (
                 <div>
                     <form onSubmit={submitHandler}>

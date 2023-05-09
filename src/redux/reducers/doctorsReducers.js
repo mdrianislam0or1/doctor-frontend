@@ -1,4 +1,4 @@
-import { DOCTOR_DETAILS_FAIL, DOCTOR_DETAILS_REQUEST, DOCTOR_DETAILS_SUCCESS, DOCTOR_LIST_FAIL, DOCTOR_LIST_REQUEST, DOCTOR_LIST_SUCCESS } from "../constants/doctorConstants"
+import { DOCTOR_CREATE_FAIL, DOCTOR_CREATE_REQUEST, DOCTOR_CREATE_RESET, DOCTOR_CREATE_SUCCESS, DOCTOR_DELETE_FAIL, DOCTOR_DELETE_REQUEST, DOCTOR_DELETE_SUCCESS, DOCTOR_DETAILS_FAIL, DOCTOR_DETAILS_REQUEST, DOCTOR_DETAILS_SUCCESS, DOCTOR_LIST_FAIL, DOCTOR_LIST_REQUEST, DOCTOR_LIST_SUCCESS } from "../constants/doctorConstants"
 
 //DOCTOR LIST REDUCER
 export const doctorListReducer = (state = { doctors: [] }, action) => {
@@ -30,3 +30,91 @@ export const doctorDetailsReducer = (state = { doctor: [] }, action) => {
     }
 }
 
+
+//PRODUCT DELETE REDUCER
+export const doctorDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+        case DOCTOR_DELETE_REQUEST:
+            return { loading: true }
+        case DOCTOR_DELETE_SUCCESS:
+            return { loading: false, success:true }
+        case DOCTOR_DELETE_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+
+//DOCTOR CREATE REDUCER
+export const doctorCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case DOCTOR_CREATE_REQUEST:
+            return { loading: true }
+        case DOCTOR_CREATE_SUCCESS:
+            return { loading: false, success:true, doctor:action.payload }
+        case DOCTOR_CREATE_FAIL:
+            return { loading: false, error: action.payload }
+        case DOCTOR_CREATE_RESET:
+            return {}
+        default:
+            return state
+    }
+}
+
+
+
+
+
+// //doctor UPDATE REDUCER
+// export const productUpdateReducer = (state = {product : {}}, action) => {
+//     switch (action.type) {
+//         case DOCTOR_UPDATE_REQUEST:
+//             return { loading: true }
+//         case DOCTOR_UPDATE_SUCCESS:
+//             return { loading: false, success:true, product:action.payload }
+//         case DOCTOR_UPDATE_FAIL:
+//             return { loading: false, error: action.payload }
+//         case DOCTOR_UPDATE_RESET:
+//             return {product:{}}
+//         default:
+//             return state
+//     }
+// }
+
+
+
+
+
+// //PRODUCT REVIEW
+// export const productReviewCreateReducer = (state = {}, action) => {
+//     switch (action.type) {
+//         case DOCTOR_CREATE_REVIEW_REQUEST:
+//             return { loading: true }
+//         case DOCTOR_CREATE_REVIEW_SUCCESS:
+//             return { loading: false, success:true}
+//         case DOCTOR_CREATE_REVIEW_FAIL:
+//             return { loading: false, error: action.payload }
+//         case DOCTOR_CREATE_REVIEW_RESET:
+//             return {}
+//         default:
+//             return state
+//     }
+// }
+
+
+
+
+// //TOP PRODUCT
+// export const productTopRatedReducer = (state = {products: []}, action) => {
+//     switch (action.type) {
+//         case DOCTOR_TOP_REQUEST:
+//             return { loading: true, products:[] }
+//         case DOCTOR_TOP_SUCCESS:
+//             return { loading: false, products: action.payload}
+//         case DOCTOR_TOP_FAIL:
+//             return { loading: false, error: action.payload }
+//         default:
+//             return state
+//     }
+// }
