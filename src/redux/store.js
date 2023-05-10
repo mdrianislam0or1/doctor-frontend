@@ -2,9 +2,9 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { userDeleteReducer, userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer } from "./reducers/userReducers";
-import {  doctorCreateReducer, doctorDeleteReducer, doctorDetailsReducer, doctorListReducer, doctorUpdateReducer } from "./reducers/doctorsReducers";
+import {  doctorCreateReducer, doctorDeleteReducer, doctorDetailsReducer, doctorListReducer, doctorReviewCreateReducer, doctorUpdateReducer } from "./reducers/doctorsReducers";
 import { bookingReducer } from "./reducers/bookingReducers";
-import { bookedCreateReducer, bookedDetailsReducer, bookedListMyReducer, bookedPayReducer } from "./reducers/bookReducer";
+import { bookedCreateReducer, bookedDeliverReducer, bookedDetailsReducer, bookedListMyReducer, bookedListReducer, bookedPayReducer } from "./reducers/bookReducer";
 
 const reducer = combineReducers({
     // doctorList
@@ -13,7 +13,7 @@ const reducer = combineReducers({
     doctorDelete: doctorDeleteReducer,
     doctorCreate: doctorCreateReducer,
     doctorUpdate: doctorUpdateReducer,
-    // doctorReviewCreate: doctorReviewCreateReducer,
+    doctorReviewCreate: doctorReviewCreateReducer,
     // doctorTopRatedReducer:doctorTopRatedReducer,
     booking: bookingReducer,
     userLogin: userLoginReducer,
@@ -28,8 +28,8 @@ const reducer = combineReducers({
     bookedDetails: bookedDetailsReducer,
     bookedPay: bookedPayReducer,
     bookedListMy: bookedListMyReducer,
-    // orderList: orderListReducer,
-    // orderDeliver: orderDeliverReducer,
+    bookedList: bookedListReducer,
+    bookedDeliver: bookedDeliverReducer,
     
     
 })

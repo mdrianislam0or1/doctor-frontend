@@ -1,7 +1,10 @@
 import axios from "axios";
 import {
-    DOCTOR_CREATE_FAIL,
-    DOCTOR_CREATE_REQUEST,
+  DOCTOR_CREATE_FAIL,
+  DOCTOR_CREATE_REQUEST,
+  DOCTOR_CREATE_REVIEW_FAIL,
+  DOCTOR_CREATE_REVIEW_REQUEST,
+  DOCTOR_CREATE_REVIEW_SUCCESS,
   DOCTOR_CREATE_SUCCESS,
   DOCTOR_DELETE_FAIL,
   DOCTOR_DELETE_REQUEST,
@@ -109,93 +112,109 @@ export const deleteDoctor = (id) => async (dispatch, getState) => {
 
 // CREATE DoctorS BY ADMIN
 
-export const createDoctor =() =>async(dispatch,getState)=>{
-
-    try{
-        dispatch({
-            type:DOCTOR_CREATE_REQUEST,
-        })
-        const{
-            userLogin:{userInfo},
-        }=getState()
-        const confiq ={
-            headers:{
-                Authorization: `Bearer ${userInfo.token}`,
-            },
-        }
-      const {data} =  await axios.post(`http://localhost:5000/api/doctors`,{},confiq)
-        dispatch({
-            type: DOCTOR_CREATE_SUCCESS,
-            payload: data
-        })
-    }catch(error){
-        dispatch({
-            type:DOCTOR_CREATE_FAIL,
-            payload:error.response && error.response.data.message ? error.response.data.message : error.message,
-        })
-    }
-}
-
-
-
+export const createDoctor = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: DOCTOR_CREATE_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const confiq = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.post(
+      `http://localhost:5000/api/doctors`,
+      {},
+      confiq
+    );
+    dispatch({
+      type: DOCTOR_CREATE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOCTOR_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 // UPDATE doctors BY ADMIN
 
-export const updateDoctor =(doctor) =>async(dispatch,getState)=>{
+export const updateDoctor = (doctor) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: DOCTOR_UPDATE_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const confiq = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.put(
+      `http://localhost:5000/api/doctors/${doctor._id}`,
+      doctor,
+      confiq
+    );
 
-    try{
-        dispatch({
-            type:DOCTOR_UPDATE_REQUEST,
-        })
-        const{
-            userLogin:{userInfo},
-        }=getState()
-        const confiq ={
-            headers:{
-                'Content-Type':'application/json',
-                Authorization: `Bearer ${userInfo.token}`,
-            },
-        }
-      const {data} =  await axios.put(`http://localhost:5000/api/doctors/${doctor._id}`,doctor,confiq)
+    dispatch({
+      type: DOCTOR_UPDATE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOCTOR_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
-        dispatch({
-            type: DOCTOR_UPDATE_SUCCESS,
-            payload: data
-        })
-    }catch(error){
-        dispatch({
-            type:DOCTOR_UPDATE_FAIL,
-            payload:error.response && error.response.data.message ? error.response.data.message : error.message,
-        })
+// REVIEW CREATE doctor
+
+export const createDoctorReview =
+  (doctorId, review) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: DOCTOR_CREATE_REVIEW_REQUEST,
+      });
+      const {
+        userLogin: { userInfo },
+      } = getState();
+      const confiq = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      await axios.post(
+        `http://localhost:5000/api/doctors/${doctorId}/reviews`,
+        review,
+        confiq
+      );
+
+      dispatch({
+        type: DOCTOR_CREATE_REVIEW_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: DOCTOR_CREATE_REVIEW_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
     }
-}
-
-// // REVIEW CREATE doctor
-
-// export const createDoctorReview =(productId,review) =>async(dispatch,getState)=>{
-
-//     try{
-//         dispatch({
-//             type:DOCTOR_CREATE_REVIEW_REQUEST,
-//         })
-//         const{
-//             userLogin:{userInfo},
-//         }=getState()
-//         const confiq ={
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 Authorization: `Bearer ${userInfo.token}`,
-//             },
-//         }
-//              await axios.post(`/api/products/${productId}/reviews`,review,confiq)
-
-//         dispatch({
-//             type: DOCTOR_CREATE_REVIEW_SUCCESS,
-//         })
-//     }catch(error){
-//         dispatch({
-//             type:DOCTOR_CREATE_REVIEW_FAIL,
-//             payload:error.response && error.response.data.message ? error.response.data.message : error.message,
-//         })
-//     }
-// }
+  };
