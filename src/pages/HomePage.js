@@ -31,7 +31,6 @@ const HomePage = () => {
            {loading ? <Loader /> : error ? <h3>{error}</h3> :
                 (doctors.map((doctor) => (
                         <div key={doctor._id}>
-                            <h1>{doctor.name}</h1>
                             <Doctor doctor={doctor} />
                         </div>
                     )

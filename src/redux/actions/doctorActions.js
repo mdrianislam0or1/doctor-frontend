@@ -12,6 +12,9 @@ import {
   DOCTOR_LIST_FAIL,
   DOCTOR_LIST_REQUEST,
   DOCTOR_LIST_SUCCESS,
+  DOCTOR_UPDATE_FAIL,
+  DOCTOR_UPDATE_REQUEST,
+  DOCTOR_UPDATE_SUCCESS,
 } from "../constants/doctorConstants";
 
 //LIST FOR DOCTOR
@@ -136,40 +139,40 @@ export const createDoctor =() =>async(dispatch,getState)=>{
 
 
 
-// // UPDATE PRODUCTS BY ADMIN
+// UPDATE doctors BY ADMIN
 
-// export const updateProduct =(product) =>async(dispatch,getState)=>{
+export const updateDoctor =(doctor) =>async(dispatch,getState)=>{
 
-//     try{
-//         dispatch({
-//             type:DOCTOR_UPDATE_REQUEST,
-//         })
-//         const{
-//             userLogin:{userInfo},
-//         }=getState()
-//         const confiq ={
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 Authorization: `Bearer ${userInfo.token}`,
-//             },
-//         }
-//       const {data} =  await axios.put(`/api/products/${product._id}`,product,confiq)
+    try{
+        dispatch({
+            type:DOCTOR_UPDATE_REQUEST,
+        })
+        const{
+            userLogin:{userInfo},
+        }=getState()
+        const confiq ={
+            headers:{
+                'Content-Type':'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+      const {data} =  await axios.put(`http://localhost:5000/api/doctors/${doctor._id}`,doctor,confiq)
 
-//         dispatch({
-//             type: DOCTOR_UPDATE_SUCCESS,
-//             payload: data
-//         })
-//     }catch(error){
-//         dispatch({
-//             type:DOCTOR_UPDATE_FAIL,
-//             payload:error.response && error.response.data.message ? error.response.data.message : error.message,
-//         })
-//     }
-// }
+        dispatch({
+            type: DOCTOR_UPDATE_SUCCESS,
+            payload: data
+        })
+    }catch(error){
+        dispatch({
+            type:DOCTOR_UPDATE_FAIL,
+            payload:error.response && error.response.data.message ? error.response.data.message : error.message,
+        })
+    }
+}
 
-// // REVIEW CREATE PRODUCT
+// // REVIEW CREATE doctor
 
-// export const createProductReview =(productId,review) =>async(dispatch,getState)=>{
+// export const createDoctorReview =(productId,review) =>async(dispatch,getState)=>{
 
 //     try{
 //         dispatch({
