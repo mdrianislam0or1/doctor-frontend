@@ -6,6 +6,7 @@ import {
     initTE,
 } from "tw-elements";
 import { logout } from '../redux/actions/userAction';
+import Search from './Search';
 
 initTE({ Collapse });
 const Navbar = () => {
@@ -128,6 +129,8 @@ const logOutHandler = () => {
                                     data-te-nav-link-ref
                                 >Login</Link>
                             </li>
+
+                            <Search/>
                         </ul>
                     </div>
                 </div>

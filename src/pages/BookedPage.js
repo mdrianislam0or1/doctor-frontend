@@ -44,7 +44,7 @@ const BookedPage = () => {
 
     const addPayPalScript = async () => {
       const { data: bookedId } = await axios.get(
-        `http://localhost:5000/api/config/paypal`
+        `https://doctor-backend-six.vercel.app/api/config/paypal`
       );
       const script = document.createElement("script");
       script.type = "text/javascript";

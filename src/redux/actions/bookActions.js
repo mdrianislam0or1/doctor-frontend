@@ -39,7 +39,7 @@ export const createBooked = (booked) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:5000/api/booked`,
+      `https://doctor-backend-six.vercel.app/api/booked`,
       booked,
       config
     );
@@ -78,7 +78,7 @@ export const getBookedDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/booked/${id}`,
+      `https://doctor-backend-six.vercel.app/api/booked/${id}`,
       config
     );
 
@@ -118,7 +118,7 @@ export const payBooked =
       };
 
       const { data } = await axios.put(
-        `http://localhost:5000/api/booked/${bookedId}/pay`,
+        `https://doctor-backend-six.vercel.app/api/booked/${bookedId}/pay`,
         paymentResult,
         config
       );
@@ -156,7 +156,7 @@ export const listMyBookeds = () => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/booked/mybookings`,
+      `https://doctor-backend-six.vercel.app/api/booked/mybookings`,
       config
     );
 
@@ -194,7 +194,7 @@ export const listBookeds = () => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/booked`,
+      `https://doctor-backend-six.vercel.app/api/booked`,
       config
     );
 
@@ -232,7 +232,7 @@ export const deliverBooked = (booked) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:5000/api/booked/${booked._id}/deliver`,
+      `https://doctor-backend-six.vercel.app/api/booked/${booked._id}/deliver`,
       {},
       config
     );

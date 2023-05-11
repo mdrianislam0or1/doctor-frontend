@@ -23,6 +23,8 @@ const BookingPage = () => {
   const booking = useSelector((state) => state.booking);
   const { bookItems } = booking;
 
+  console.log("booking",booking)
+
   // const bookItems = useSelector(state => state.bookItems)
 
   const removeFromBookHandler = (id) => {
@@ -50,11 +52,11 @@ const BookingPage = () => {
                 </Link>
                 <button
                   className="p-5 bg-indigo-500"
-                  onClick={() => navigate(`/book/${bookItem._id}`)}
+                  onClick={() => navigate(`/process`)}
                 >
                   Book
                 </button>
-                <button
+                <button className=" bg-indigo-500"
                   type="button"
                   onClick={() => removeFromBookHandler(bookItem.doctor)}
                 >
