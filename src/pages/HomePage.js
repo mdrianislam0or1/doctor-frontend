@@ -28,9 +28,9 @@ const HomePage = () => {
       <div className=" container px-10 mx-auto">
         {/* Taking Services section start */}
 
-        <div className="py-20">
-          <h1 className=" text-center py-8 sm:text-5xl md:text-6xl lg:text-7xl">
-            Monitor Doctor Availability and Patient Load
+        <div className="py-2">
+          <h1 className=" text-center py-8 sm:text-5xl md:text-5xl lg:text-6xl">
+            Monitor Doctor Availability <br/> and Patient Load
           </h1>
           <p className=" text-center py-8 text-gray-500">
             Streamline Communication and Collaboration Effective communication
@@ -43,7 +43,7 @@ const HomePage = () => {
           </p>
         </div>
 
-        <div className="py-10">
+        <div className="py-4">
           <>
             <div className="grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4">
               {data.map((service) => (
@@ -57,7 +57,7 @@ const HomePage = () => {
         {/* Taking Services section end */}
 
         {/* doctor section start */}
-        <div className="py-10">
+        <div className="py-4">
           <h1 className=" text-center py-8 sm:text-5xl md:text-6xl lg:text-7xl">
             Our Team
           </h1>

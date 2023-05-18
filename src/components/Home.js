@@ -33,7 +33,7 @@ const Home = () => {
         </div>
       </div>
       {/* //service Section start */}
-      <div className="py-20">
+      <div className="py-10">
         <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-1">
           <div className="">
             <h1 className="sm:text-5xl md:text-5xl lg:text-6xl">

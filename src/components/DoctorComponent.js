@@ -9,7 +9,6 @@ const DoctorComponent = () => {
 
     const params = useParams;
     const keyword = params.keyword;
-  
     const dispatch = useDispatch();
   
     useEffect(() => {
@@ -20,7 +19,9 @@ const DoctorComponent = () => {
     const { loading, error, doctors } = doctorList;
 
   return (
-    <div>
+   <>
+    <div className='container px-10 mx-auto'>
+    <div className='grid grid-cols-4 gap-4'>
         {loading ? (
               <Loader />
             ) : error ? (
@@ -33,6 +34,8 @@ const DoctorComponent = () => {
               ))
             )}
     </div>
+    </div>
+   </>
   )
 }
 
