@@ -34,7 +34,8 @@ const BookingPage = () => {
 
   const processHandler = () => {
     navigate(`/process`);
-    console.log("process");
+
+    
   };
   return (
     <div className="grid grid-cols-4 gap-4">
@@ -52,7 +53,7 @@ const BookingPage = () => {
                 </Link>
                 <button
                   className="p-5 bg-indigo-500"
-                  onClick={() => navigate(`/process`)}
+                  onClick={() => navigate('/process')}
                 >
                   Book
                 </button>

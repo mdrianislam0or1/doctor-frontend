@@ -15,14 +15,39 @@ import UserEditPage from "./pages/UserEditPage";
 import DoctorListPage from "./pages/DoctorListPage";
 import DoctorEditPage from "./pages/DoctorEditPage";
 import BookedListPage from "./pages/BookedListPage";
+import NavbarComponent from "./components/NavbarComponent";
+import { useEffect, useState } from "react";
+import Dropdown from "./components/Dropdown";
+import DoctorComponent from "./components/DoctorComponent";
 
 
 function App() {
+
+  const [isOpen,setIsOpen] = useState(false);
+  const toggle =() =>{
+    setIsOpen(!isOpen)
+  }
+
+  useEffect(() =>{
+    const hideMenu = () =>{
+      if (window.innerWidth > 768 && isOpen){
+        setIsOpen(false)
+      }
+    }
+    window.addEventListener('resize',hideMenu);
+    return() =>{
+      window.removeEventListener('resize', hideMenu)
+    }
+  })
+
   return (
     <div>
-      <Navbar/>
+      <NavbarComponent toggle={toggle}/>
+    <Dropdown isOpen={isOpen} toggle={toggle}/>
+      {/* <Navbar/> */}
       <Routes>
         <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/doctors" element={<DoctorComponent />} />
         <Route exact path="/search/:keyword" element={<HomePage />} />
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/register" element={<RegisterPage />} />

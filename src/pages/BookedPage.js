@@ -44,7 +44,7 @@ const BookedPage = () => {
 
     const addPayPalScript = async () => {
       const { data: bookedId } = await axios.get(
-        `https://doctor-backend-six.vercel.app/api/config/paypal`
+        `http://localhost:5000/api/config/paypal`
       );
       const script = document.createElement("script");
       script.type = "text/javascript";
@@ -85,8 +85,8 @@ const BookedPage = () => {
   ) : (
     <>
       <div div className="px-20 ">
-        <h1>Confirm Booke Details Page {booked._id}</h1>
-        <h1>Confirm Booke Details Page {booked.email}</h1>
+        <h1>Confirm Booke Details Page {booked?._id}</h1>
+        <h1>Confirm Booke Details Page {booked?.email}</h1>
         <div>
           <div className="flex flex-col sm:flex-row justify-between">
             <div className=" grid grid-cols-4 gap-4 align-middle">
@@ -95,74 +95,74 @@ const BookedPage = () => {
                 <p className="mt-2 text-sm text-black-500">
                   Please confirm your order
                 </p>
-                <p className="mt-2 text-sm text-black-500">{booked.address}</p>
-                <p className="mt-2 text-sm text-black-500">{booked.name}</p>
-                <p className="mt-2 text-sm text-black-500">{booked.email}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.address}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.name}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.email}</p>
                 <p className="mt-2 text-sm text-black-500">
-                  {booked.postalCode}
+                  {booked?.postalCode}
                 </p>
-                <p className="mt-2 text-sm text-black-500">{booked.country}</p>
-                <p className="mt-2 text-sm text-black-500">{booked.phone}</p>
-                <p className="mt-2 text-sm text-black-500">{booked.taka}</p>
-                <p className="mt-2 text-sm text-black-500">{booked.date}</p>
-                <p className="mt-2 text-sm text-black-500">{booked.time}</p>
-                <p className="mt-2 text-sm text-black-500">{booked.status}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.country}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.phone}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.taka}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.date}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.time}</p>
+                <p className="mt-2 text-sm text-black-500">{booked?.status}</p>
 
-                {booked.isDelivered ? (
-                  <h1>{booked.deliveredAt}</h1>
+                {booked?.isDelivered ? (
+                  <h1>{booked?.deliveredAt}</h1>
                 ) : (
                   <h1>Not delivered</h1>
                 )}
               </div>
               <div className=" col-span-1">
                 <h2>payment </h2>
-                <strong>{booking.paymentMethod.paymentMethod} </strong>
+                <strong>{booking?.paymentMethod?.paymentMethod} </strong>
               </div>
 
               <div className=" col-span-1">
-                {booked.bookItems.length === 0 ? (
-                  <span className>Your booked Item is Empty</span>
+                {booked?.bookItems.length === 0 ? (
+                  <span className>Your booked? Item is Empty</span>
                 ) : (
                   <div>
-                    {booked.bookItems.map((bookItem, index) => (
+                    {booked?.bookItems?.map((bookItem, index) => (
                       <div key={index} className="grid grid-cols-4 gap-4">
                         <div className="col-span-1">
                           <strong>
-                            <Link to={`/doctors/${bookItem.name}`}>
-                              {bookItem.name}
+                            <Link to={`/doctors/${bookItem?.name}`}>
+                              {bookItem?.name}
                             </Link>
                           </strong>
-                          <strong>{bookItem.serial}</strong>
+                          <strong>{bookItem?.serial}</strong>
                         </div>
                         <div className="col-span-1">
-                          {bookItem.degree}
-                          {bookItem.address}
-                          {bookItem.email}
-                          {bookItem.phone}
-                          {bookItem.speciality}
+                          {bookItem?.degree}
+                          {bookItem?.address}
+                          {bookItem?.email}
+                          {bookItem?.phone}
+                          {bookItem?.speciality}
                         </div>
 
                         {error && <h1>{error}</h1>}
 
                         <div className="col-span-1">
                           <strong>
-                            Amount : {booking.processAddress.taka}
+                            Amount : {booking?.processAddress.taka}
                           </strong>
-                          {booked.isPaid ? (
-                            <h1>{booked.paidAt}</h1>
+                          {booked?.isPaid ? (
+                            <h1>{booked?.paidAt}</h1>
                           ) : (
                             <h1>Not Paid</h1>
                           )}
 
                           <strong>
-                            {!booked.isPaid && (
+                            {!booked?.isPaid && (
                               <div>
                                 {loadingPay && <Loader />}
                                 {!sdkReady ? (
                                   <Loader />
                                 ) : (
                                   <button
-                                    amount={booked.taka}
+                                    amount={booked?.taka}
                                     onSuccess={successPaymentHandler}
                                   />
                                 )}
@@ -170,8 +170,8 @@ const BookedPage = () => {
 
                                 {userInfo &&
                                   userInfo.isAdmin &&
-                                  booked.isPaid &&
-                                  !booked.isDelivered && (
+                                  booked?.isPaid &&
+                                  !booked?.isDelivered && (
                                     <div className="">
                                       <button
                                         type="button"

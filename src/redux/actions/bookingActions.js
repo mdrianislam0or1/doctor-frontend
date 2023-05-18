@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { BOOKING_ADD_ITEM, BOOKING_REMOVE_ITEM, BOOKING_SAVE_PAYMENT_METHOD, BOOKING_SAVE_PROCESS_ADDRESS } from '../constants/bookingConstant'
 export const addToBook = (id,serialNumber)=> async(dispatch,getState) =>{
-    const {data} = await axios.get(`https://doctor-backend-six.vercel.app/api/doctors/${id}`)
+    const {data} = await axios.get(`http://localhost:5000/api/doctors/${id}`)
 
     dispatch({
         type: BOOKING_ADD_ITEM,
