@@ -59,7 +59,7 @@ const HomePage = () => {
         {/* doctor section start */}
         <div className="py-4">
           <h1 className=" text-center py-8 sm:text-5xl md:text-6xl lg:text-7xl">
-            Our Team
+            Our Specialties Doctors
           </h1>
           <p className=" text-center py-8 text-gray-500">
             Simplify Doctor Scheduling and Appointments

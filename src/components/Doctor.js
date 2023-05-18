@@ -8,11 +8,13 @@ const Doctor = ({ doctor }) => {
         {/* <!-- card with image --> */}
         <div class=" w-full">
           <div class="bg-white rounded-lg shadow-lg">
-            
-            <img src={doctor.image} alt="" class="rounded-t-lg" />
+            <div className="m-auto w-40 h-50">
+              <img src={doctor.image} alt="" class="bg-fuchsia-100 rounded-lg" />
+              {/* <img src='/images/imgOne.png' alt="" class="bg-fuchsia-100 rounded-lg" /> */}
+            </div>
             <div class="p-6">
               <h2 class="font-bold mb-2 text-2xl text-fuchsia-700">
-              {doctor.name}
+                {doctor.name}
               </h2>
               <p class=" mb-2">{doctor.degree}</p>
               <p class=" mb-2">{doctor.speciality}</p>
