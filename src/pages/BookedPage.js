@@ -84,13 +84,13 @@ const BookedPage = () => {
     <h1>{error}</h1>
   ) : (
     <>
-      <div div className="px-20 ">
+      <div div className="container px-10 mx-auto">
         <h1>Confirm Booke Details Page {booked?._id}</h1>
         <h1>Confirm Booke Details Page {booked?.email}</h1>
         <div>
           <div className="flex flex-col sm:flex-row justify-between">
-            <div className=" grid grid-cols-4 gap-4 align-middle">
-              <div className=" col-span-1">
+            <div className=" grid grid-cols-3 gap-4 align-middle">
+              <div className=" ">
                 <h2>bookinging </h2>
                 <p className="mt-2 text-sm text-black-500">
                   Please confirm your order
@@ -114,47 +114,46 @@ const BookedPage = () => {
                   <h1>Not delivered</h1>
                 )}
               </div>
-              <div className=" col-span-1">
+              <div className=" ">
                 <h2>payment </h2>
                 <strong>{booking?.paymentMethod?.paymentMethod} </strong>
               </div>
 
-              <div className=" col-span-1">
+              <div className=" ">
                 {booked?.bookItems.length === 0 ? (
                   <span className>Your booked? Item is Empty</span>
                 ) : (
                   <div>
                     {booked?.bookItems?.map((bookItem, index) => (
-                      <div key={index} className="grid grid-cols-4 gap-4">
-                        <div className="col-span-1">
-                          <strong>
+                      <div key={index} className="grid grid-cols-2 gap-4">
+                        <div className="">
+                          <h1>
                             <Link to={`/doctors/${bookItem?.name}`}>
                               {bookItem?.name}
                             </Link>
-                          </strong>
-                          <strong>{bookItem?.serial}</strong>
-                        </div>
-                        <div className="col-span-1">
-                          {bookItem?.degree}
-                          {bookItem?.address}
-                          {bookItem?.email}
-                          {bookItem?.phone}
-                          {bookItem?.speciality}
+                          </h1>
+                          <h1>Degree : {bookItem?.degree}</h1>
+                          <h1>Address :{bookItem?.address}</h1>
+                          <h1>Email : {bookItem?.email}</h1>
+                          <h1>Phone : {bookItem?.phone}</h1>
+                          <h1>Speciality :{bookItem?.speciality}</h1>
+                          <h1>Serial :{bookItem?.serial}</h1>
+                          <h1>Amount : {booking?.processAddress?.taka}</h1>
                         </div>
 
                         {error && <h1>{error}</h1>}
 
-                        <div className="col-span-1">
-                          <strong>
+                        
+                          <p>
                             Amount : {booking?.processAddress.taka}
-                          </strong>
+                          </p>
                           {booked?.isPaid ? (
                             <h1>{booked?.paidAt}</h1>
                           ) : (
                             <h1>Not Paid</h1>
                           )}
 
-                          <strong>
+                          <p>
                             {!booked?.isPaid && (
                               <div>
                                 {loadingPay && <Loader />}
@@ -174,6 +173,8 @@ const BookedPage = () => {
                                   !booked?.isDelivered && (
                                     <div className="">
                                       <button
+                                      className=" mt-3 rounded-b-lg bg-fuchsia-950 text-white
+                                      py-2 px-3"
                                         type="button"
                                         onClick={deliveryHandler}
                                       >
@@ -183,8 +184,8 @@ const BookedPage = () => {
                                   )}
                               </div>
                             )}
-                          </strong>
-                        </div>
+                          </p>
+                        
                       </div>
                     ))}
                   </div>

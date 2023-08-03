@@ -100,50 +100,30 @@ const ConfirmBooking = () => {
                   {booking?.bookItems?.map((bookItem, index) => (
                     <div key={index} className="grid grid-cols-2 gap-2">
                       <div className="">
-                        <strong>
-                          <Link to={`/doctors/${bookItem?.name}`}>
-                            {bookItem?.name}
-                          </Link>
-                        </strong>
+                        <Link to={`/doctors/${bookItem?.name}`}>
+                          <h1>Name : {bookItem?.name}</h1>
+                        </Link>
+
                         <div className="">
-                          <h1>
-                            Degree : {bookItem?.degree}
-                          </h1>
-                          <h1>
-                            Address : 
-                          {bookItem?.address}
-                          </h1>
-                          <h1>
-                            Email : {bookItem?.email}
-                          </h1>
-                          <h1>
-                          Phone : {bookItem?.phone}
-                          </h1>
-                          <h1>
-                          Speciality :{bookItem?.speciality}
-                          </h1>
-                          <h1>
-                          Serial :{bookItem?.serial}
-                          </h1>
+                          <h1>Degree : {bookItem?.degree}</h1>
+                          <h1>Address :{bookItem?.address}</h1>
+                          <h1>Email : {bookItem?.email}</h1>
+                          <h1>Phone : {bookItem?.phone}</h1>
+                          <h1>Speciality :{bookItem?.speciality}</h1>
+                          <h1>Serial :{bookItem?.serial}</h1>
+                          <h1>Amount : {booking?.processAddress?.taka}</h1>
 
-                        </div>
-
-                      </div>
-
-                      {error && <h1>{error}</h1>}
-
-                      <div className="">
-                        <strong>Amount : {booking.processAddress.taka}</strong>
-                        <strong>
                           <button
-                            className=" bg-pink-300 text-base rounded-md"
+                            className=" mt-3 rounded-b-lg bg-fuchsia-950 text-white
+                            py-2 px-3"
                             disabled={booking.bookItems === 0}
                             onClick={confirmBooking}
                           >
                             Book Confirm
                           </button>
-                        </strong>
+                        </div>
                       </div>
+                      <div className="">{error && <h1>{error}</h1>}</div>
                     </div>
                   ))}
                 </div>
