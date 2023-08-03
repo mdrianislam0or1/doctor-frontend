@@ -19,6 +19,7 @@ import NavbarComponent from "./components/NavbarComponent";
 import { useEffect, useState } from "react";
 import Dropdown from "./components/Dropdown";
 import DoctorComponent from "./components/DoctorComponent";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -67,7 +68,7 @@ function App() {
       
       
       </Routes>
-
+      <Footer/>
 
     </div>
   );

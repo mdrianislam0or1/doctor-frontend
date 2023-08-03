@@ -155,7 +155,7 @@ const ProfilePage = () => {
             <td>{booked.createdAt.substring(0,10)}</td>
 
             <td>{booked.taka}</td>
-            <td>{booked.isPaid ? booked.paidAt.substring(0,10):(
+            <td>{booked.isPaid ? <p>Paid</p> :(
                 <h1>NOt Paid</h1>
             )}</td>
             <td>{booked.isDeliverd ? booked.DeliverdAt.substring(0,10):(

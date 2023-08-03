@@ -81,44 +81,93 @@ const BookedPage = () => {
   return loading ? (
     <Loader />
   ) : error ? (
-    <h1>{error}</h1>
+    <p>{error}</p>
   ) : (
     <>
       <div div className="container px-10 mx-auto">
-        <h1>Confirm Booke Details Page {booked?._id}</h1>
-        <h1>Confirm Booke Details Page {booked?.email}</h1>
+        <p className="text-xl font-bold text-black">Confirm Id: {booked?._id}</p>
+        <p className="text-xl font-bold text-black">Confirm Email: {booked?.email}</p>
         <div>
           <div className="flex flex-col sm:flex-row justify-between">
             <div className=" grid grid-cols-3 gap-4 align-middle">
               <div className=" ">
-                <h2>bookinging </h2>
-                <p className="mt-2 text-sm text-black-500">
-                  Please confirm your order
+                <p className="mt-2 text-black-500">
+                  Name: {booked?.name}
                 </p>
-                <p className="mt-2 text-sm text-black-500">{booked?.address}</p>
-                <p className="mt-2 text-sm text-black-500">{booked?.name}</p>
-                <p className="mt-2 text-sm text-black-500">{booked?.email}</p>
-                <p className="mt-2 text-sm text-black-500">
-                  {booked?.postalCode}
+                <p className="mt-2 text-black-500">
+                  Address: {booked?.address}</p>
+                
+                <p className="mt-2 text-black-500">
+                  Email:  {booked?.email}
                 </p>
-                <p className="mt-2 text-sm text-black-500">{booked?.country}</p>
-                <p className="mt-2 text-sm text-black-500">{booked?.phone}</p>
-                <p className="mt-2 text-sm text-black-500">{booked?.taka}</p>
-                <p className="mt-2 text-sm text-black-500">{booked?.date}</p>
-                <p className="mt-2 text-sm text-black-500">{booked?.time}</p>
-                <p className="mt-2 text-sm text-black-500">{booked?.status}</p>
-
+                <p className="mt-2 text-black-500">
+                  PostalCode: {booked?.postalCode}
+                </p>
+                <p className="mt-2 text-black-500">
+                 Country: {booked?.country}
+                </p>
+                <p className="mt-2 text-black-500">
+                 Phone: {booked?.phone}
+                </p>
+                <p className="mt-2 text-black-500">
+                  Taka: {booked?.taka}</p>
+                <p className="mt-2 text-black-500">
+                 Date: {booked?.date}
+                </p>
+                <p className="mt-2 text-black-500">
+                 Time: {booked?.time}
+                </p>
+                <p className="mt-2 text-black-500">
+                 Status: {booked?.status}
+                </p>
+                <p className="mt-2 text-black-500">
+                Payment Method:{booked?.paymentMethod}
+                </p>
                 {booked?.isDelivered ? (
-                  <h1>{booked?.deliveredAt}</h1>
+                  
+                <button className="px-4 py-2 bg-green-500 text-white">
+                              Appoint
+                </button>
+                
                 ) : (
-                  <h1>Not delivered</h1>
+                  <p>Not Appoint</p>
                 )}
-              </div>
-              <div className=" ">
-                <h2>payment </h2>
-                <strong>{booking?.paymentMethod?.paymentMethod} </strong>
-              </div>
 
+<p>
+                          {!booked?.isPaid && (
+                            <div>
+                              {loadingPay && <Loader />}
+                              {!sdkReady ? (
+                                <Loader />
+                              ) : (
+                                <button
+                                  className=" mt-3 rounded-b-lg bg-fuchsia-950 text-white
+                                  py-2 px-3"
+                                  amount={booked?.taka}
+                                  onSuccess={successPaymentHandler}
+                                />
+                              )}
+                              {loadingDeliver && <Loader />}
+
+                              {userInfo &&
+                                userInfo.isAdmin &&
+                                booked?.isPaid &&
+                                !booked?.isDelivered && (
+                                  <div className="">
+                                    <button
+                                      className=" mt-3 rounded-b-lg bg-fuchsia-950 text-white
+                                      py-2 px-3"
+                                      type="button"
+                                      onClick={deliveryHandler}
+                                    >
+                                      Mark As Done
+                                    </button>
+                                  </div>
+                                )}
+                            </div>
+                          )}
+                        </p>
+              </div>
               <div className=" ">
                 {booked?.bookItems.length === 0 ? (
                   <span className>Your booked? Item is Empty</span>
@@ -127,65 +176,33 @@ const BookedPage = () => {
                     {booked?.bookItems?.map((bookItem, index) => (
                       <div key={index} className="grid grid-cols-2 gap-4">
                         <div className="">
-                          <h1>
+                          <p>
                             <Link to={`/doctors/${bookItem?.name}`}>
-                              {bookItem?.name}
+                            Doctor Name :{bookItem?.name}
                             </Link>
-                          </h1>
-                          <h1>Degree : {bookItem?.degree}</h1>
-                          <h1>Address :{bookItem?.address}</h1>
-                          <h1>Email : {bookItem?.email}</h1>
-                          <h1>Phone : {bookItem?.phone}</h1>
-                          <h1>Speciality :{bookItem?.speciality}</h1>
-                          <h1>Serial :{bookItem?.serial}</h1>
-                          <h1>Amount : {booking?.processAddress?.taka}</h1>
-                        </div>
-
-                        {error && <h1>{error}</h1>}
-
-                        
-                          <p>
-                            Amount : {booking?.processAddress.taka}
                           </p>
-                          {booked?.isPaid ? (
-                            <h1>{booked?.paidAt}</h1>
-                          ) : (
-                            <h1>Not Paid</h1>
-                          )}
-
-                          <p>
-                            {!booked?.isPaid && (
-                              <div>
-                                {loadingPay && <Loader />}
-                                {!sdkReady ? (
-                                  <Loader />
-                                ) : (
-                                  <button
-                                    amount={booked?.taka}
-                                    onSuccess={successPaymentHandler}
-                                  />
-                                )}
-                                {loadingDeliver && <Loader />}
-
-                                {userInfo &&
-                                  userInfo.isAdmin &&
-                                  booked?.isPaid &&
-                                  !booked?.isDelivered && (
-                                    <div className="">
-                                      <button
-                                      className=" mt-3 rounded-b-lg bg-fuchsia-950 text-white
-                                      py-2 px-3"
-                                        type="button"
-                                        onClick={deliveryHandler}
-                                      >
-                                        Mark As Done
-                                      </button>
-                                    </div>
-                                  )}
-                              </div>
-                            )}
-                          </p>
+                          <p>Degree : {bookItem?.degree}</p>
+                          <p>Address :{bookItem?.address}</p>
+                          <p>Email : {bookItem?.email}</p>
+                          <p>Phone : {bookItem?.phone}</p>
+                          <p>Speciality :{bookItem?.speciality}</p>
+                          <p>Serial :{bookItem?.serial}</p>
                         
+                        {error && <p>{error}</p>}
+
+                        {booked?.isPaid ? (
+                          <p>
+                      
+                            <button className="px-4 py-2 bg-green-500 text-white">
+                              Payment Done
+                            </button>
+                          </p>
+                        ) : (
+                          <button className="px-4 py-2 bg-green-500 text-white">
+                            Not Paid
+                          </button>
+                        )}
+                      </div>
                       </div>
                     ))}
                   </div>

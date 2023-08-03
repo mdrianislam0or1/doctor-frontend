@@ -41,15 +41,15 @@ const BookedListPage = () => {
 </thead>
 <tbody>
 {bookeds.map(booked =>(
-    <tr key={booked._id}> 
-        <td>{booked.name}</td>
-        <td>{booked.user && booked.user.name}</td>
-        <td>{booked.createdAt.substring(0,10)}</td>
-        <td>{booked.taka}</td>    
-        <td>{booked.isPaid ? (booked.paidAt.substring(0.10)) : <h1>N/A</h1>}</td>    
-        <td>{booked.isDelivered ? (booked.deliveredAt.substring(0.10)) : <h1>N/A</h1>}</td>    
+    <tr key={booked?._id}> 
+        <td>{booked?.name}</td>
+        <td>{booked?.user && booked?.user.name}</td>
+        <td>{booked?.createdAt.substring(0,10)}</td>
+        <td>{booked?.taka}</td>    
+        <td>{booked?.isPaid ? <p>Yes</p> : <h1>N/A</h1>}</td>    
+        <td>{booked?.isDelivered ? <p>Yes</p> : <h1>N/A</h1>}</td>    
         <td>
-            <Link to={`/booked/${booked._id}`}>
+            <Link to={`/booked/${booked?._id}`}>
                 <button>
                     Details
                 </button> 
