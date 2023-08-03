@@ -125,7 +125,7 @@ const DoctorEditPage = () => {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:5000/api/uploads",
+        "https://doctor-backend-six.vercel.app/api/uploads",
         formData,
         config
       );

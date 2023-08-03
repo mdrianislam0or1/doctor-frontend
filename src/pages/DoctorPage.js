@@ -67,36 +67,53 @@ const DoctorPage = () => {
             ) : (
               <div className="">
                 {/* <!-- horizontal card --> */}
-              
-                  <div class="bg-white rounded-lg shadow-2xl md:flex md:justify-center lg:flex lg:justify-between">
-                    <div class="md:w-1/3 p-8">
-                      <img
-                        src="/images/imgOne.png"
-                        alt={doctor.image}
-                        className=" w-full h-full"
-                      />
-                    </div>
-                    {/* <img
+
+                <div class="bg-white rounded-lg shadow-2xl md:flex md:justify-center lg:flex lg:justify-between">
+                  <div class="md:w-1/3 p-8">
+                    <img
+                      src="/images/imgOne.png"
+                      alt={doctor.image}
+                      className=" w-full h-full"
+                    />
+                  </div>
+                  {/* <img
                       src={doctor?.image}
                       alt={doctor.image}
                       class="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none"
                     /> */}
-                    <div class=" flex  items-center mx-auto sm:p-10 md:p-0 lg:p-0">
-                      <div>
-                        <h2 class="font-bold text-xl md:text-3xl mb-2 ">
-                          {doctor?.name}
-                        </h2>
-                        <p class=""><strong>Degree: </strong> {doctor?.degree}</p>
-                        <p class=""> {doctor?.speciality}</p>
-                        <p class=""> {doctor?.address}</p>
-                        <p class=""> {doctor?.phone}</p>
-                        <p class=""> {doctor?.serial}</p>
-                        <p class=""> {doctor?.date}</p>
-                        <button className=" bg-fuchsia-900 text-white p-2 rounded-lg" onClick={addToBookHandler}>Add Appointments</button>
-                      </div>
+                  <div class=" flex  items-center mx-auto sm:p-10 md:p-0 lg:p-0">
+                    <div className="p-3">
+                      <h2 class="font-bold text-xl md:text-3xl mb-2 ">
+                        {doctor?.name}
+                      </h2>
+                      <p class=" text-xl">
+                        <strong>Degree: </strong> {doctor?.degree}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Speciality: </strong> {doctor?.speciality}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Address: </strong> {doctor?.address}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Phone: </strong> {doctor?.phone}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Serial: </strong> {doctor?.serial}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Date: </strong> {doctor?.date}
+                      </p>
+                      <button
+                        className=" bg-fuchsia-900 text-white p-2 rounded-lg"
+                        onClick={addToBookHandler}
+                      >
+                        Add Appointments
+                      </button>
                     </div>
                   </div>
                 </div>
+              </div>
             )}
           </div>
 
@@ -117,18 +134,30 @@ const DoctorPage = () => {
       )} */}
 
           <div className="grid grid-cols-2 gap-4">
-            <div className=" col-span-1">
-              <h1>Review</h1>
+            <h1>Review</h1>
 
-              {doctor?.reviews?.length < 0 && <h1>NO REVIEWS</h1>}
-              <div>
-                {doctor?.reviews?.map((review) => (
-                  <div>
-                    <strong>{review?.name}</strong>
-                    {/* <p>{review.createdAt.substring(0, 10)}</p> */}
-                    <p>{review?.comment}</p>
+            {/* <!-- card with image --> */}
+            <div className=" col-span-1">
+              <div class=" w-full">
+                <div class="bg-white rounded-lg shadow-lg">
+                  {doctor?.reviews?.length < 0 && <h1>NO REVIEWS</h1>}
+                  <div class="p-6">
+                    <div>
+                      {doctor?.reviews?.map((review) => (
+                        <div>
+                          <h2 class="font-bold mb-2 text-2xl text-fuchsia-700">
+                            <strong>Name: {review?.name}</strong>
+                          </h2>
+                          <p class=" mb-2">
+                            {" "}
+                            <strong>Comment: </strong> {review?.comment}
+                          </p>
+                          {/* <p>{review.createdAt.substring(0, 10)}</p> */}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
 

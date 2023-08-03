@@ -25,7 +25,7 @@ export const listDoctors = (keyword = '') => async (dispatch) => {
   try {
     dispatch({ type: DOCTOR_LIST_REQUEST });
     // const {data} = await axios.get(`/api/doctors?keyword=${keyword}&pageNumber=${pageNumber}`)
-    const { data } = await axios.get(`http://localhost:5000/api/doctors?keyword=${keyword}`);
+    const { data } = await axios.get(`https://doctor-backend-six.vercel.app/api/doctors?keyword=${keyword}`);
     dispatch({
       type: DOCTOR_LIST_SUCCESS,
       payload: data,
@@ -45,7 +45,7 @@ export const listDoctors = (keyword = '') => async (dispatch) => {
 export const listDoctorsDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: DOCTOR_DETAILS_REQUEST });
-    const { data } = await axios.get(`http://localhost:5000/api/doctors/${id}`);
+    const { data } = await axios.get(`https://doctor-backend-six.vercel.app/api/doctors/${id}`);
 
     dispatch({
       type: DOCTOR_DETAILS_SUCCESS,
@@ -95,7 +95,7 @@ export const deleteDoctor = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.delete(`http://localhost:5000/api/doctors/${id}`, confiq);
+    await axios.delete(`https://doctor-backend-six.vercel.app/api/doctors/${id}`, confiq);
     dispatch({
       type: DOCTOR_DELETE_SUCCESS,
     });
@@ -126,7 +126,7 @@ export const createDoctor = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.post(
-      `http://localhost:5000/api/doctors`,
+      `https://doctor-backend-six.vercel.app/api/doctors`,
       {},
       confiq
     );
@@ -162,7 +162,7 @@ export const updateDoctor = (doctor) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.put(
-      `http://localhost:5000/api/doctors/${doctor._id}`,
+      `https://doctor-backend-six.vercel.app/api/doctors/${doctor._id}`,
       doctor,
       confiq
     );
@@ -200,7 +200,7 @@ export const createDoctorReview =
         },
       };
       await axios.post(
-        `http://localhost:5000/api/doctors/${doctorId}/reviews`,
+        `https://doctor-backend-six.vercel.app/api/doctors/${doctorId}/reviews`,
         review,
         confiq
       );

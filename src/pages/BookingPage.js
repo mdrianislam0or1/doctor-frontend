@@ -38,31 +38,76 @@ const BookingPage = () => {
     
   };
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="container px-10 mx-auto">
+
+    
+    <div className="grid grid-cols-1 gap-4">
       {bookItems?.length === 0 ? (
         <Link to="/">Go to Home</Link>
       ) : (
         <div>
           {bookItems?.map((bookItem) => (
             <div className="">
-              <div key={bookItem._id}>
-                <Link to={`/doctors/${bookItem.doctor}`}>
-                  <h1>{bookItem.name}</h1>
-                  <p>{bookItem.phone}</p>
-                  <p>{bookItem.address}</p>
-                </Link>
-                <button
-                  className="p-5 bg-indigo-500"
-                  onClick={() => navigate('/process')}
-                >
-                  Book
-                </button>
-                <button className=" bg-indigo-500"
-                  type="button"
-                  onClick={() => removeFromBookHandler(bookItem.doctor)}
-                >
-                  Remove From Book
-                </button>
+
+               <div className="">
+                {/* <!-- horizontal card --> */}
+
+                <div class="bg-white rounded-lg shadow-2xl md:flex md:justify-center lg:flex lg:justify-between">
+                  <div class="md:w-1/3 p-8">
+                    <img
+                      src="/images/imgOne.png"
+                      alt={bookItem.image}
+                      className=" w-full h-full"
+                    />
+                  </div>
+                  {/* <img
+                      src={bookItem?.image}
+                      alt={bookItem.image}
+                      class="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none"
+                    /> */}
+                  <div class=" flex  items-center mx-auto sm:p-10 md:p-0 lg:p-0">
+                    <div className="p-3">
+                    <Link to={`/doctors/${bookItem.doctor}`}>
+                      <h2 class="font-bold text-xl md:text-3xl mb-2 ">
+                        {bookItem?.name}
+                      </h2>
+                      </Link>
+                      <p class=" text-xl">
+                        <strong>Degree: </strong> {bookItem?.degree}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Speciality: </strong> {bookItem?.speciality}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Address: </strong> {bookItem?.address}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Phone: </strong> {bookItem?.phone}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Serial: </strong> {bookItem?.serial}
+                      </p>
+                      <p class=" text-xl">
+                        <strong>Date: </strong> {bookItem?.date}
+                      </p>
+                      <button
+                        className=" bg-fuchsia-900 text-white p-2 rounded-lg"
+                        onClick={() => navigate('/process')}
+                      >
+                        Book An Appointment
+                      </button>
+                      {/* <button
+                        className=" bg-fuchsia-900 text-white p-2 rounded-lg"
+                        onClick={() => removeFromBookHandler(bookItem.doctor)}
+
+                      >
+                        Remove from Book
+                      </button> */}
+                   
+                    </div>
+                    
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -76,6 +121,7 @@ const BookingPage = () => {
           Process
         </button>
       </div>
+    </div>
     </div>
   );
 };
