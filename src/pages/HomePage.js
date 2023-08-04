@@ -74,7 +74,7 @@ const HomePage = () => {
             ) : error ? (
               <h3>{error}</h3>
             ) : (
-              doctors.slice(0, 2).map((doctor) => (
+              doctors.slice(0, 4).map((doctor) => (
                 <div key={doctor._id}>
                   <Doctor doctor={doctor} />
                 </div>

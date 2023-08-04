@@ -123,7 +123,7 @@ const BookedPage = () => {
                 <p className="mt-2 text-black-500">
                 Payment Method:{booked?.paymentMethod}
                 </p>
-                {booked?.isDelivered ? (
+                {/* {booked?.isDelivered ? (
                   
                 <button className="px-4 py-2 bg-green-500 text-white">
                               Appoint
@@ -131,7 +131,7 @@ const BookedPage = () => {
                 
                 ) : (
                   <p>Not Appoint</p>
-                )}
+                )} */}
 
 <p>
                           {!booked?.isPaid && (
@@ -145,7 +145,9 @@ const BookedPage = () => {
                                   py-2 px-3"
                                   amount={booked?.taka}
                                   onSuccess={successPaymentHandler}
-                                />
+                                >
+                                  Visited
+                                </button>
                               )}
                               {loadingDeliver && <Loader />}
 
@@ -157,7 +159,6 @@ const BookedPage = () => {
                                     <button
                                       className=" mt-3 rounded-b-lg bg-fuchsia-950 text-white
                                       py-2 px-3"
-                                      type="button"
                                       onClick={deliveryHandler}
                                     >
                                       Mark As Done
