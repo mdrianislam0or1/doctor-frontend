@@ -127,7 +127,8 @@ const ProfilePage = () => {
                         <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' id="image" name="image" type="text" value={image} onChange={e => setImage(e.target.value)} required  />
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
                         <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' id="date" name="date" type="date" value={date} onChange={e => setDate(e.target.value)} required  />
-                        <button type="submit" className="flex w-full justify-center rounded-md">updateUser</button>
+                        <button type="submit" className="text-center w-full mt-3 rounded-b-lg bg-fuchsia-950 text-white
+                                      py-2 px-3">Update Your Details</button>
                     </form>
                     </div>
                 </div>

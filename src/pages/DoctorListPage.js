@@ -75,7 +75,7 @@ const DoctorListPage = () => {
 
   
   return (
-    <>
+    <div className="px-10 container mx-auto">
       <div className="grid grid-cols-3 gap-5">
         <div className=" col-span-1">
           <h1>Doctors</h1>
@@ -100,33 +100,34 @@ const DoctorListPage = () => {
         ) : error ? (
           <h1>{error}</h1>
         ) : (
-          <div>
-            <table className="">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Admin</th>
-                  <th>Action</th>
-                  <th>Role</th>
+          <div className="relative overflow-x-auto">
+    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr >
+                  <th scope="col" className="px-6 py-3">Id</th>
+                  <th scope="col" className="px-6 py-3" >Name</th>
+                  <th scope="col" className="px-6 py-3">Email</th>
+                  <th scope="col" className="px-6 py-3">Admin</th>
+                  <th scope="col" className="px-6 py-3">Action</th>
+                  <th scope="col" className="px-6 py-3">Role</th>
                 </tr>
               </thead>
               <tbody>
                 {doctors?.map((doctor) => (
-                  <tr key={doctor?._id}>
-                    <td>{doctor?.name}</td>
-                    <td>{doctor?.email}</td>
-                    <td>{doctor?.isAdmin ? <h1>Admin</h1> : <h1>N/A</h1>}</td>
-                    <td>{doctor?.role ? <h1>Admin</h1> : <h1>N/A</h1>}</td>
-                    <td>
+                   <tr  key={doctor?._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{doctor?.name}</th>
+                    <td className="px-6 py-4">{doctor?.email}</td>
+                    <td className="px-6 py-4">{doctor?.isAdmin ? <h1>Admin</h1> : <h1>N/A</h1>}</td>
+                    <td className="px-6 py-4">{doctor?.role ? <h1>Admin</h1> : <h1>N/A</h1>}</td>
+                    <td className="px-6 py-4">
                       <Link to={`/admin/doctor/${doctor?._id}/edit`}>
                         <button>Edit</button>
                       </Link>
                     </td>
-                    <td>
+                    <td className="px-6 py-4">
                       <Link to={`/admin/userlist`}>
-                        <button onClick={() => deleteHandler(doctor?._id)}>
+                        <button className="mt-3 rounded-b-lg bg-fuchsia-950 text-white
+                                      py-2 px-3" onClick={() => deleteHandler(doctor?._id)}>
                           Delete
                         </button>
                       </Link>
@@ -138,7 +139,7 @@ const DoctorListPage = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

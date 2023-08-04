@@ -33,37 +33,39 @@ const UserListPage = () => {
 
     }
   return (
-    <>
+    <div className='px-10 container mx-auto'>
         <h1>Users</h1>
-        {loading ? <Loader/> :error ? <h1>{error}</h1> : <div>
-            <table className="">
-            <thead>
+        {loading ? <Loader/> :error ? <h1>{error}</h1> : 
+          <div className="relative overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Admin</th>
-      <th>Action</th>
-      <th>Role</th>
+      <th scope="col" className="px-6 py-3" >Id</th>
+      <th scope="col" className="px-6 py-3">Name</th>
+      <th scope="col" className="px-6 py-3">Email</th>
+      <th scope="col" className="px-6 py-3">Admin</th>
+      <th scope="col" className="px-6 py-3">Action</th>
+      <th scope="col" className="px-6 py-3">Role</th>
     </tr>
   </thead>
   <tbody>
     {users.map(user =>(
-        <tr key={user._id}> 
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.isAdmin ? <h1>Admin</h1> : <h1>N/A</h1>}</td>    
-            <td>{user.role ? <h1>Admin</h1> : <h1>N/A</h1>}</td>
-            <td>
+        <tr key={user._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"> 
+            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.name}</td>
+            <td className="px-6 py-4">{user.email}</td>
+            <td className="px-6 py-4">{user.isAdmin ? <h1>Admin</h1> : <h1>N/A</h1>}</td>    
+            <td className="px-6 py-4">{user.role ? <h1>Admin</h1> : <h1>N/A</h1>}</td>
+            <td className="px-6 py-4">
                 <Link to={`/admin/user/${user._id}/edit`}>
                     <button>
                         Edit
                     </button> 
                 </Link>
             </td>
-            <td>
+            <td className="px-6 py-4">
                 <Link to={`/admin/userlist`}>
-                    <button onClick={()=>
+                    <button className='mt-3 rounded-b-lg bg-fuchsia-950 text-white
+                                      py-2 px-3' onClick={()=>
                     deleteHandler(user._id)
                     }>
                         Delete
@@ -76,7 +78,7 @@ const UserListPage = () => {
             </table>
 
             </div>}
-    </>
+    </div>
   )
 }
 

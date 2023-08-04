@@ -138,161 +138,173 @@ const DoctorEditPage = () => {
   };
 
   return (
-    <>
+    <div className="px-10 container mx-auto">
       <h1>Edit User Page</h1>
       <Link to="/admin/doctorlist">Doctor List</Link>
-      {loadingUpdate && <Loader />}
-      {errorUpdate && <h1>{errorUpdate}</h1>}
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <h1>{error}</h1>
-      ) : (
+
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <div>
-          <form onSubmit={submitHandler}>
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              speciality
-            </label>
-            <input
-              id="speciality"
-              name="speciality"
-              type="text"
-              value={speciality}
-              onChange={(e) => setSpeciality(e.target.value)}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Email address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Confirm Password
-            </label>
-            <input
-              id="serial"
-              name="serial"
-              type="number"
-              value={serial}
-              onChange={(e) => setSerial(e.target.value)}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Address
-            </label>
-            <input
-              id="address"
-              name="address"
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Phone
-            </label>
-            <input
-              id="phone"
-              name="phone"
-              type="text"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
+          {loadingUpdate && <Loader />}
+          {errorUpdate && <h1>{errorUpdate}</h1>}
+          {loading ? (
+            <Loader />
+          ) : error ? (
+            <h1>{error}</h1>
+          ) : (
+            <div>
+              <form onSubmit={submitHandler}>
+                <div class="relative z-0 w-full mb-6 group">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  />
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    speciality
+                  </label>
+                  <input
+                    id="speciality"
+                    name="speciality"
+                    type="text"
+                    value={speciality}
+                    onChange={(e) => setSpeciality(e.target.value)}
+                    required
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  />
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Email address
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  />
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  />
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Confirm Password
+                  </label>
+                  <input
+                    id="serial"
+                    name="serial"
+                    type="number"
+                    value={serial}
+                    onChange={(e) => setSerial(e.target.value)}
+                    required
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  />
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Address
+                  </label>
+                  <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    required
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  />
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Phone
+                  </label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="text"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  />
 
-            <div className=" from-success-500">
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Image
-            </label>
-            <input
-              id="image"
-              name="image"
-              type="text"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
-            <input
-              id="image-file"
-              name="uploading"
-              type="file"
-              label="Choose a File"
-              custom
-              onChange={uploadFileHandler}
-              required
-              className="block  sm:text-sm sm:leading-6"
-            />
+                  <div className=" from-success-500">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Image
+                    </label>
+                    <input
+                      id="image"
+                      name="image"
+                      type="text"
+                      value={image}
+                      onChange={(e) => setImage(e.target.value)}
+                      required
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    />
+                    <input
+                      id="image-file"
+                      name="uploading"
+                      type="file"
+                      label="Choose a File"
+                      custom
+                      onChange={uploadFileHandler}
+                      required
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    />
 
-            {uploading && <Loader />}
+                    {uploading && <Loader />}
+                  </div>
+
+                  {/* admin */}
+
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Admin Action
+                  </label>
+                  <div className="mt-2">
+                    <label className="inline-flex items-center">
+                      <input
+                        id="admin"
+                        name="admin"
+                        type="checkbox"
+                        value="admin"
+                        className="form-radio h-4 w-4 text-indigo-600"
+                        onChange={(e) => setAdmin(e.target.checked)}
+                        checked={admin}
+                        required
+                      />
+                      <span className="ml-2">true</span>
+                    </label>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="mt-3 w-full rounded-b-lg bg-fuchsia-950 text-white
+                    py-2 px-3"
+                  >
+                    Update
+                  </button>
+                </div>
+              </form>
             </div>
-
-            {/* admin */}
-
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Admin Action
-            </label>
-            <div className="mt-2">
-              <label className="inline-flex items-center">
-                <input
-                  id="admin"
-                  name="admin"
-                  type="checkbox"
-                  value="admin"
-                  className="form-radio h-4 w-4 text-indigo-600"
-                  onChange={(e) => setAdmin(e.target.checked)}
-                  checked={admin}
-                  required
-                />
-                <span className="ml-2">true</span>
-              </label>
-            </div>
-
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md"
-            >
-              Update
-            </button>
-          </form>
+          )}
         </div>
-      )}
-    </>
+
+        <div>
+          <img src="/images/sOne.png" alt={name} className=" w-full h-full" />
+        </div>
+      </div>
+    </div>
   );
 };
 
