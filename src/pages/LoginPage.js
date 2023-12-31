@@ -31,7 +31,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="px-10 container mx-auto">
+    <div className="px-10 container mx-auto h-screen">
       <div className="text-center">
         {error && <h1>{error}</h1>}
         {loading && <Loader>{loading}</Loader>}

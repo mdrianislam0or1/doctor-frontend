@@ -6,10 +6,14 @@ const Doctor = ({ doctor }) => {
     <>
       <Link to={`/doctors/${doctor._id}`}>
         {/* <!-- card with image --> */}
-        <div class=" w-full">
+        <div class=" w-full h-screen">
           <div class="bg-white rounded-lg shadow-lg">
             <div className="m-auto w-40 h-50">
-              <img src={doctor.image} alt="" class="bg-fuchsia-100 rounded-lg" />
+              <img
+                src={doctor.image}
+                alt=""
+                class="bg-fuchsia-100 rounded-lg"
+              />
               {/* <img src='/images/imgOne.png' alt="" class="bg-fuchsia-100 rounded-lg" /> */}
             </div>
             <div class="p-6">
